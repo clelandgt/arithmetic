@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include<iostream>
 #include <stack>
+#include<vector>
 
 using namespace std;
 
@@ -109,6 +110,8 @@ void printListReversingly_Recursively(ListNode* pHead)
     }
 }
 
+
+
 void Test(ListNode* pHead)
 {
     PrintList(pHead);
@@ -145,7 +148,57 @@ void Test1()
     // DestroyList(pNode1);
 }
 
+
+// 牛客网提交的相关代码
+class Solution {
+public:
+    vector<int> dev;
+    vector<int>& printListFromTailToHead(ListNode* head) 
+    {    
+        if(head != nullptr)
+        {
+            if(head->m_pNext != nullptr)
+            {
+                printListFromTailToHead(head->m_pNext);
+            }
+            dev.push_back(head->m_nValue);
+            // printf("%d\n", head->m_nValue);
+        }
+        return dev;
+    }
+};
+
+// 测试牛客网上提交的代码
+void Test2()
+{
+    vector<int> values;
+
+    printf("\nTest1 begins.\n");
+
+    ListNode* pNode1 = CreateListNode(1);
+    ListNode* pNode2 = CreateListNode(2);
+    ListNode* pNode3 = CreateListNode(3);
+    ListNode* pNode4 = CreateListNode(4);
+    ListNode* pNode5 = CreateListNode(5);
+
+    ConnectListNodes(pNode1, pNode2);
+    ConnectListNodes(pNode2, pNode3);
+    ConnectListNodes(pNode3, pNode4);
+    ConnectListNodes(pNode4, pNode5);
+
+    PrintList(pNode1);
+    Solution s = Solution();
+    values = s.printListFromTailToHead(pNode1);
+
+    for(int n : values) {
+        std::cout << n << '\n';
+    }
+    
+}
+
+
 int main(int argc, char* argv[])
 {   
-    Test1();
+    // Test1();
+    Test2();
 }
