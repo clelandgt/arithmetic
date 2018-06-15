@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/22.dir/main.cpp.o CMakeFiles/22.dir/list.cpp.o CMakeFiles/22.dir/find_kth_to_tail.cpp.o  -o 22 

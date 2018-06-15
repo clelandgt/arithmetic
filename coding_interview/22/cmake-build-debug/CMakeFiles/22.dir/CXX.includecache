@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/find_kth_to_tail.cpp
+find_kth_to_tail.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/find_kth_to_tail.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/find_kth_to_tail.h
+list.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/list.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/list.cpp
+list.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/list.h
+stdio.h
+-
+stdlib.h
+-
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/list.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/main.cpp
+iostream
+-
+find_kth_to_tail.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/22/find_kth_to_tail.h
+
