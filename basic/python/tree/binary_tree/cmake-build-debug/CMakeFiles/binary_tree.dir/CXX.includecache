@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/cleland/gitrooms/arithmetic/basic/tree/binary_tree/binary_tree.cpp
+binary_tree.h
+/Users/cleland/gitrooms/arithmetic/basic/tree/binary_tree/binary_tree.h
+
+/Users/cleland/gitrooms/arithmetic/basic/tree/binary_tree/binary_tree.h
+
+/Users/cleland/gitrooms/arithmetic/basic/tree/binary_tree/main.cpp
+iostream
+-
+binary_tree.h
+/Users/cleland/gitrooms/arithmetic/basic/tree/binary_tree/binary_tree.h
+
