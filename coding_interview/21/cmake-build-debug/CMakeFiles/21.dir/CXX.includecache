@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/ReOrderArray.cpp
+ReOrderArray.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/ReOrderArray.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/ReOrderArray.h
+list.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/list.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/list.cpp
+list.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/list.h
+stdio.h
+-
+stdlib.h
+-
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/list.h
+
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/main.cpp
+iostream
+-
+ReOrderArray.h
+/Users/cleland/gitrooms/arithmetic/coding_interview/21/ReOrderArray.h
+
