@@ -9,6 +9,9 @@ from . import Node
 class BinarySearchTree(object):
     def __init__(self):
         self.root = None
+        self._pre_order = []
+        self._in_order = []
+        self._bac_order = []
 
     def insert(self, value):
         """ 插入
@@ -145,40 +148,57 @@ class BinarySearchTree(object):
             cur_code = cur_code.right
         return max_node
 
-    def pre_order(self):
+    def pre_order(self, node):
         """ 前序遍历
-
+        根节点 -> 左子节点 -> 右子节点
         :return:
         """
-        raise NotImplementedError
+        if not node:
+            return
+        print node.value
+        self._pre_order.append(node)
+        self.pre_order(node.left)
+        self.pre_order(node.right)
 
-    def in_order(self):
+    def in_order(self, node):
         """ 中序遍历
-
+        左子节点 -> 当前节点 -> 右子节点
         :return:
         """
-        raise NotImplementedError
+        if not node:
+            return
+        self.in_order(node.left)
+        print node.value
+        self._in_order.append(node)
+        self.in_order(node.right)
 
-    def bac_order(self):
+    def bac_order(self, node):
         """ 后序遍历
-
+        左子节点 -> 右子节点 -> 当前节点
         :return:
         """
-        raise NotImplementedError
+        if not node:
+            return
+        self.bac_order(node.left)
+        self.bac_order(node.right)
+        print node.value
+        self._bac_order.append(node)
 
     def bfs(self):
-        """ 广度优先
+        """ 广度优先遍历(借助队列)
 
         :return:
         """
+        # TODO: 待补充
         raise NotImplementedError
 
     def dfs(self):
-        """ 深度优先
+        """ 深度优先遍历(借助栈)
 
         :return:
         """
-        raise  NotImplementedError
+        # TODO: 待补充
+        raise NotImplementedError
 
 
 def test():
@@ -190,6 +210,7 @@ def test():
     tree.insert(11)
     tree.insert(14)
     tree.insert(17)
+    tree.insert(8)
 
 
     """
@@ -210,3 +231,12 @@ def test():
 
     result = tree.find(10)
     print 'find 10 in tree, result: {}'.format(result.value)
+
+    print u'前序遍历:'
+    tree.pre_order(tree.root)
+
+    print u'中序遍历:'
+    tree.in_order(tree.root)
+
+    print u'后序遍历:'
+    tree.bac_order(tree.root)
