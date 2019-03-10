@@ -7,19 +7,12 @@
 
 
 class Heap(object):
-    def __init__(self, capacity):
+    def __init__(self):
         """ 结构化
 
-        :param capacity:
         """
         self.data = [0]
         self.count = 0
-
-    def set_heap(self, nums):
-        self.data = [0]
-        for num in nums:
-            self.data.append(num)
-        self.count = len(self.data)
 
     def build_heap(self, nums):
         """ 堆化
@@ -27,7 +20,14 @@ class Heap(object):
         :param nums:
         :return:
         """
-        pass
+        self.data = [0]
+        self.count = len(nums)
+        for num in nums:
+            self.data.append(num)
+
+        n = self.count
+        for i in range(1, (n/2)+1)[::-1]:
+            self.heapify(self.data, n, i)
 
     def insert(self, value):
         """ 堆中插入一个元素
@@ -44,13 +44,11 @@ class Heap(object):
         if self.count == 1:
             return
 
-        n = self.count - 1
+        n = self.count
         while n > 0:
             parent_index = n / 2
             if items[n] > items[parent_index]:
-                tmp = items[parent_index]
-                items[parent_index] = items[n]
-                items[n] = tmp
+                items[n], items[parent_index] = items[parent_index], items[n]
                 n = parent_index
             else:
                 break
@@ -70,7 +68,7 @@ class Heap(object):
         self.data[1] = self.data.pop()
 
         # 堆化
-        Heap.heapify(self.data, self.count, 1)
+        self.heapify(self.data, self.count, 1)
 
     @staticmethod
     def heapify(nums, n, i):
@@ -92,7 +90,7 @@ class Heap(object):
             nums[i], nums[max_pos] = nums[max_pos], nums[i]
             i = max_pos
 
-    def sort(self, nums):
+    def sort(self, nums=[]):
         """ 堆排序
         步骤:
         1. 堆化
@@ -100,7 +98,13 @@ class Heap(object):
 
         :return:
         """
-        pass
+        if len(nums) != 0:
+            self.build_heap(nums)
+        if self.count < 1:
+            return
+        for i in range(2, self.count+1)[::-1]:
+            self.data[1], self.data[i] = self.data[i], self.data[1]
+            self.heapify(self.data, i-1, 1)
 
 
 def test():
@@ -120,8 +124,8 @@ def test():
         5  6 7  8  1 2
     """
 
-    heap = Heap(100)
-    heap.set_heap([33, 27, 21, 16, 13, 15, 9, 5, 6, 7, 8, 1, 2])
+    heap = Heap()
+    heap.build_heap([33, 27, 21, 16, 13, 15, 9, 5, 6, 7, 8, 1, 2])
     print '初始化堆: ', heap.data
 
     heap.insert(22)
@@ -130,10 +134,9 @@ def test():
     heap.delete_top()
     print u'堆插删除头元素: ', heap.data
 
-    # # 堆排序测试
-    # heap = Heap(100)
-    # nums = [2, 8, 10, 1, 3, 7, 5, 6, 9, 20, 15]
-    # heap.build_heap(nums)
-    # heap.sort()
-    # sort_nums = heap.data
-    # print sort_nums
+    # 堆排序测试
+    heap = Heap()
+    heap.build_heap([2, 8, 10, 1, 3, 7, 5, 6, 9, 20, 15])
+    print u'堆化的元素: ', heap.data
+    heap.sort()
+    print u'堆排序后的元素: ', heap.data
