@@ -11,7 +11,7 @@ def bubble_sort(l):
             if a[j] < a[j-1]
                 swap(a[j], a[j-1])
     """
-    for i in xrange(0, len(l)):
+    for i in range(0, len(l)):
         for j in range(i+1, len(l))[::-1]:
             if l[j] < l[j-1]:
                 l[j], l[j-1] = l[j-1], l[j]
@@ -20,9 +20,9 @@ def bubble_sort(l):
 
 def main():
     l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print 'before sort:', l1
+    print ('before sort:', l1)
     l2 = bubble_sort(l1)
-    print 'after sort:', l2
+    print ('after sort:', l2)
 
 
 if __name__ == '__main__':
