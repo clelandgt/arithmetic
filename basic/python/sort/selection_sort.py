@@ -13,9 +13,9 @@ def selection_sort(l):
                 min_index = j
         swap(l[i], l[min_index])
     """
-    for i in xrange(0, len(l)):
+    for i in range(0, len(l)):
         min_index = i
-        for j in xrange(i, len(l)):
+        for j in range(i, len(l)):
             if l[j] < l[min_index]:
                 min_index = j
         l[i], l[min_index] = l[min_index], l[i]
@@ -25,9 +25,9 @@ def selection_sort(l):
 
 def main():
     l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print 'before sort:', l1
+    print ('before sort:', l1)
     l2 = selection_sort(l1)
-    print 'after sort:', l2
+    print ('after sort:', l2)
 
 
 if __name__ == '__main__':

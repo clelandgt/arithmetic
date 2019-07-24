@@ -5,8 +5,8 @@ __author__ = 'cleland'
 def insert_sort(l):
     """ 插入排序
     """
-    for i in xrange(1, len(l)):
-        for j in xrange(0, i):
+    for i in range(1, len(l)):
+        for j in range(0, i):
             if l[i] <= l[j]:
                 l[i], l[j] = l[j], l[i]
     return l
