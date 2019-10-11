@@ -155,7 +155,7 @@ class BinarySearchTree(object):
         """
         if not node:
             return
-        print node.value
+        print (node.value)
         self._pre_order.append(node)
         self.pre_order(node.left)
         self.pre_order(node.right)
@@ -168,7 +168,7 @@ class BinarySearchTree(object):
         if not node:
             return
         self.in_order(node.left)
-        print node.value
+        print (node.value)
         self._in_order.append(node)
         self.in_order(node.right)
 
@@ -181,7 +181,7 @@ class BinarySearchTree(object):
             return
         self.bac_order(node.left)
         self.bac_order(node.right)
-        print node.value
+        print (node.value)
         self._bac_order.append(node)
 
     def bfs(self):
@@ -224,19 +224,19 @@ def test():
     """
 
     min_value = tree.get_min()
-    print 'trees min value: {}'.format(min_value)
+    print ('trees min value: {}'.format(min_value))
 
     max_value = tree.get_max()
-    print 'trees max value: {}'.format(max_value)
+    print ('trees max value: {}'.format(max_value))
 
     result = tree.find(10)
-    print 'find 10 in tree, result: {}'.format(result.value)
+    print ('find 10 in tree, result: {}'.format(result.value))
 
-    print u'前序遍历:'
+    print (u'前序遍历:')
     tree.pre_order(tree.root)
 
-    print u'中序遍历:'
+    print (u'中序遍历:')
     tree.in_order(tree.root)
 
-    print u'后序遍历:'
+    print (u'后序遍历:')
     tree.bac_order(tree.root)
