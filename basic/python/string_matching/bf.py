@@ -25,14 +25,33 @@ def bf(main, pattern):
     return -1
 
 
+def rk(main, pattern):
+    n = len(main)
+    m = len(pattern)
+
+    if n <= m:
+        return 0 if pattern == main else -1
+
+    for i in range(n-m+1):
+        if hash(main[i: i+m]) == hash(pattern):
+            return i
+        else:
+            continue
+    return -1
+
+
 def main():
-    m_str = 'a' * 100000
+    m_str = 'a' * 10000
     p_str = 'a' * 200 + 'b'
 
     t = time()
     print('---------- performance ----------')
     print('[bf] result:', bf(m_str, p_str))
     print('[bf] time cost: {0:.5}s'.format(time()-t))
+
+    t = time()
+    print('[rk] result:', rk(m_str, p_str))
+    print('[rk] time cost: {0:.5}s'.format(time()-t))
 
 
     m_str = 'thequickbrownfoxjumpsoverthelazydog'
@@ -41,6 +60,10 @@ def main():
     print('---------- search ----------')
     print('[bf] result:', bf(m_str, p_str))
     print('[bf] time cost: {0:.5}s'.format(time()-t))
+
+    t = time()
+    print('[rk] result:', rk(m_str, p_str))
+    print('[rk] time cost: {0:.5}s'.format(time()-t))
 
 
 if __name__ == '__main__':
