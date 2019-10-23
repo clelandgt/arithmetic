@@ -20,17 +20,19 @@ def bad_character_rule(s: str, pattern: str) -> int:
     n, m = len(s), len(pattern)
 
     i = 0
-    while i <= n - m:
-        j = m - 1
+    while i <= (n-m):
+        j = m-1
         while j >= 0:
             if s[i+j] != pattern[j]:
-                si = i+j
-                xi = bad_character_table[ord(s[i+j])]
-                i += si - xi
                 break
             else:
                 j -= 1
-        if j < 0: return i
+        if j < 0:
+            return i
+        else:
+            si = i + j
+            xi = bad_character_table[ord(s[i+j])]
+            i = si - xi
 
     return -1
 
