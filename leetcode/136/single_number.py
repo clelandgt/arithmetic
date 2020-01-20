@@ -8,11 +8,6 @@ from typing import List
 
 class Solution1:
     def singleNumber(self, nums: List[int]) -> int:
-        if len(nums) <= 0:
-            return False
-        elif len(nums) == 1:
-            return nums[0]
-
         result = []
         for item in nums:
             if item not in result:
@@ -23,12 +18,8 @@ class Solution1:
 
 
 class Solution2:
+    """ 使用散列表 """
     def singleNumber(self, nums: List[int]) -> int:
-        if len(nums) <= 0:
-            return False
-        elif len(nums) == 1:
-            return nums[0]
-
         tmp_dict = {}
         for item in nums:
             if item not in tmp_dict.keys():
@@ -38,10 +29,32 @@ class Solution2:
         return tmp_dict.popitem()[0]
 
 
+class Solution3:
+    """ 使用散列表+异常处理 """
+    def singleNumber(self, nums: List[int]) -> int:
+        tmp_dict = {}
+        for item in nums:
+            try:
+                tmp_dict.pop(item)
+            except:
+                tmp_dict[item] = 1
+        return tmp_dict.popitem()[0]
+
+
+class Solution4:
+    """ math
+        2∗(a+b+c)−(a+a+b+b+c)=c
+    :return:
+    """
+    def singleNumber(self, nums: List[int]) -> int:
+        nums_distinct = set(nums)
+        return sum(nums_distinct) * 2 - sum(nums)
+
+
 def main():
     # Input: [4,1,2,1,2], Output: 4
     nums = [4, 1, 2, 1, 2]
-    s = Solution2()
+    s = Solution4()
     print(s.singleNumber(nums))
 
 
