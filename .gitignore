@@ -2,3 +2,4 @@
 *.dSYM
 *.plist
 *.idea
+*.pyc
