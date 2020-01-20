@@ -27,11 +27,12 @@ class Solution2:
             False
 
         tmp_dict = {}
-        for i in range(len(nums)):
-            if (target-nums[i]) in tmp_dict.keys():
-                return tmp_dict[target-nums[i]], i
+        for i, v in enumerate(nums):
+            remaining = target - v
+            if remaining in tmp_dict.keys():
+                return tmp_dict[remaining], i
             else:
-                tmp_dict[nums[i]] = i
+                tmp_dict[v] = i
 
 
 def main():
