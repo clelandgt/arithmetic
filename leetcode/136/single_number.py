@@ -22,10 +22,26 @@ class Solution1:
         return result.pop()
 
 
+class Solution2:
+    def singleNumber(self, nums: List[int]) -> int:
+        if len(nums) <= 0:
+            return False
+        elif len(nums) == 1:
+            return nums[0]
+
+        tmp_dict = {}
+        for item in nums:
+            if item not in tmp_dict.keys():
+                tmp_dict[item] = 1
+            else:
+                tmp_dict.pop(item)
+        return tmp_dict.popitem()[0]
+
+
 def main():
     # Input: [4,1,2,1,2], Output: 4
     nums = [4, 1, 2, 1, 2]
-    s = Solution1()
+    s = Solution2()
     print(s.singleNumber(nums))
 
 
