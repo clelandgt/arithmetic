@@ -47,13 +47,54 @@ class Solution1:
         try:
             self.repeat_dict[total]
             return False
-        except Exception:
+        except KeyError:
             self.repeat_dict[total] = 1
             return self.isHappy(total)
 
 
+class Solution2:
+    """
+    执行时间 52ms
+    时间复杂度超过：5.82%
+    空间复杂度超过：100%
+    """
+    def __init__(self):
+        self.repeat_dict = {}
+
+    def isHappy(self, n: int) -> bool:
+        total = sum([int(item) **2 for item in str(n)])
+        if total == 1:
+            return True
+
+        try:
+            self.repeat_dict[total]
+            return False
+        except KeyError:
+            self.repeat_dict[total] = 1
+            return self.isHappy(total)
+
+
+class Solution3:
+    """
+    时间复杂度超过：5.82%
+    空间复杂度超过：100%
+    """
+    def __init__(self):
+        self.repeat = set()
+
+    def isHappy(self, n: int) -> bool:
+        total = sum([int(item) **2 for item in str(n)])
+        if total == 1:
+            return True
+        if total not in self.repeat:
+            self.repeat.add(total)
+            return self.isHappy(total)
+        else:
+            return False
+
+
 def main():
-    s = Solution1()
+    s = Solution2()
     print(s.isHappy(19))
 
 
