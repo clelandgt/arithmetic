@@ -2,7 +2,7 @@
 # @File  : __init__.py.py
 # @Author: Cleland
 # @Date  : 2019-03-01
-# @Desc  :
+# @Desc  : 当前都是基于链表实现
 from abc import abstractmethod
 
 
@@ -13,9 +13,9 @@ class Node(object):
         self.value = value
 
 
-class BinaryTree(object):
+class BinaryTree(Node):
     def __init__(self):
-        pass
+        super(__class__, self).__init__()
 
     @abstractmethod
     def insert(self, value):
@@ -77,3 +77,20 @@ class BinaryTree(object):
         :return:
         """
         pass
+
+    @abstractmethod
+    def bfs(self):
+        """ 广度优先遍历(借助队列)
+
+        :return:
+        """
+        # TODO: 待补充
+        raise NotImplementedError
+
+    @abstractmethod
+    def dfs(self):
+        """ 深度优先遍历(借助栈)
+
+        :return:
+        """
+        # TODO: 待补充
