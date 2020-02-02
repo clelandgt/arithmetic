@@ -107,7 +107,7 @@ class BinarySearchTree(BinaryTree):
 
     def pre_order(self):
         """ 前序遍历
-        r->preOrder(r->left)->preOrder(r->right)
+        当前节点->左子节点->右子节点: r->preOrder(r->left)->preOrder(r->right)
         :return:
         """
         self._pre_nums = []
@@ -127,23 +127,43 @@ class BinarySearchTree(BinaryTree):
         inOrder(r->left)->r->inOrder(r->right)
         :return:
         """
-        pass
+        self._in_nums = []
+        self._in_order(self.root)
+        return self._in_nums
+
+    def _in_order(self, node: Node):
+        if node is None:
+            return
+
+        self._in_order(node.left)
+        self._in_nums.append(node.value)
+        self._in_order(node.right)
 
     def post_order(self):
         """ 后序遍历
         postOrder(r->left)->postOrder(r->right)->r
         :return:
         """
-        pass
+        self._post_nums = []
+        self._post_order(self.root)
+        return self._post_nums
+
+    def _post_order(self, node: Node):
+        if node is None:
+            return
+
+        self._post_order(node.left)
+        self._post_order(node.right)
+        self._post_nums.append(node.value)
 
 
 def main():
     u""" 构建的基础二叉树
                   13
-                /   / \
-              10   14 16
-              / \      \
-             9  11     17
+                /    \
+              10     16
+              / \    / \
+             9  11  14 17
             /
            8
     """
@@ -167,6 +187,8 @@ def main():
 
     # 4. 遍历(前、中、后序)
     print('pre order: ', tree.pre_order())
+    print('in order: ', tree.in_order())
+    print('post order: ', tree.post_order())
 
     min_value = tree.get_min()
     print('trees min value: {}'.format(min_value))
