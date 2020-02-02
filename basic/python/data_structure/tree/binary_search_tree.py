@@ -156,6 +156,34 @@ class BinarySearchTree(BinaryTree):
         self._post_order(node.right)
         self._post_nums.append(node.value)
 
+    def get_max(self):
+        """ 获取最大值
+        最右叶子节点: 一直遍历右子节树，直到叶子节点，其中的数据就是最大值
+        :return:
+        """
+        return self._get_max(self.root)
+
+    def _get_max(self, node: Node):
+        if node is None:
+            return
+        if node.left is None and node.right is None:
+            return node.value
+        return self._get_max(node.right)
+
+    def get_min(self):
+        """ 获取最小值
+        最左叶子节点: 一直遍历左子节树，直到叶子节点，其中的数据就是最大值
+        :return:
+        """
+        return self._get_min(self.root)
+
+    def _get_min(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is None:
+            return node.value
+        return self._get_min(node.left)
+
 
 def main():
     u""" 构建的基础二叉树
@@ -190,11 +218,9 @@ def main():
     print('in order: ', tree.in_order())
     print('post order: ', tree.post_order())
 
-    min_value = tree.get_min()
-    print('trees min value: {}'.format(min_value))
-
-    max_value = tree.get_max()
-    print('trees max value: {}'.format(max_value))
+    # 5. 获取最小值，最大值。
+    print('trees min value: ', tree.get_min())
+    print('trees max value: ', tree.get_max())
 
     # result = tree.find(10)
     # print('find 10 in tree, result: {}'.format(result.value))
