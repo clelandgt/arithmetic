@@ -15,6 +15,7 @@ class BinarySearchTree(BinaryTree):
         1. 如头节点为空，插入头节点。
         2. 如果比当前节点小，则查找左子节点树，否则查找右子节点树。递归遍历，直到某个子节点为空时，插入数据。
         :param value:
+        :param parent:
         :return:
         """
         if not self.root:
@@ -32,13 +33,13 @@ class BinarySearchTree(BinaryTree):
         """
         if value < node.value:
             if node.left is None:
-                node.left = Node(value)
+                node.left = Node(value, node)
                 return
             else:
                 self._insert1(node.left, value)
         elif value > node.value:
             if node.right is None:
-                node.right = Node(value)
+                node.right = Node(value, node)
                 return
             else:
                 self._insert1(node.right, value)
@@ -58,13 +59,13 @@ class BinarySearchTree(BinaryTree):
         while True:
             if value < cur_node.value:
                 if cur_node.left is None:
-                    cur_node.left = Node(value)
+                    cur_node.left = Node(value, cur_node)
                     return
                 else:
                     cur_node = cur_node.left
             elif value > cur_node.value:
                 if cur_node.right is None:
-                    cur_node.right = Node(value)
+                    cur_node.right = Node(value, cur_node)
                     return
                 else:
                     cur_node = cur_node.right

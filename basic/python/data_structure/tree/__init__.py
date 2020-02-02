@@ -7,9 +7,10 @@ from abc import abstractmethod
 
 
 class Node(object):
-    def __init__(self, value):
+    def __init__(self, value, parent=None):
         self.left = None
         self.right = None
+        self.parent = parent
         self.value = value
 
 
@@ -23,7 +24,9 @@ class BinaryTree(Node):
     @abstractmethod
     def insert(self, value):
         """ 插入
+
         :param value:
+        :param parent:
         :return:
         """
         pass
@@ -87,7 +90,6 @@ class BinaryTree(Node):
 
         :return:
         """
-        # TODO: 待补充
         pass
 
     @abstractmethod
@@ -96,5 +98,4 @@ class BinaryTree(Node):
 
         :return:
         """
-        # TODO: 待补充
         pass
