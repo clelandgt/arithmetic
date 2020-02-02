@@ -70,18 +70,29 @@ class BinarySearchTree(BinaryTree):
                     cur_node = cur_node.right
 
     def delete(self, value):
-        pass
+        """ 删除数据
+        有以下三种场景：
+        1. 无子节点: 直接删除
+        2. 只有一个子节点: 该节点的父节点指向该子节点
+        3. 左右子节点都有：该节点的父节点指向右子节点树里的最小值节点。
+        :param value:
+        :return:
+        """
+        # 定位节点
+        del_node = self.search(value)
 
-    def find(self, value):
+        # 1. 无子节点
+
+    def search(self, value):
         """ 查找数据
         查找数据小于当前节点数据，遍历左子节点树；否则遍历右子节点树。直到节点为空或节点的数据等于查找数据。
         :param value:
         :return:
         """
-        return self._find1(self.root, value)
-        # return self._find2(value)
+        return self._search1(self.root, value)
+        # return self._search2(value)
 
-    def _find1(self, node: Node, value):
+    def _search1(self, node: Node, value):
         """ 递归方式实现 """
         if node is None:
             return
@@ -89,11 +100,11 @@ class BinarySearchTree(BinaryTree):
         if value == node.value:
             return node
         elif value < node.value:
-            return self._find1(node.left, value)
+            return self._search1(node.left, value)
         else:
-            return self._find1(node.right, value)
+            return self._search1(node.right, value)
 
-    def _find2(self, value):
+    def _search2(self, value):
         """ 循环的方式实现 """
         cur_node = self.root
 
@@ -209,7 +220,7 @@ def main():
     tree.insert(8)
 
     # 2. 查找
-    print('find 10 in binary tree: ', tree.find(10).value)
+    print('find 10 in binary tree: ', tree.search(10).value)
 
     # 3. 删除
 
@@ -224,12 +235,3 @@ def main():
 
     # result = tree.find(10)
     # print('find 10 in tree, result: {}'.format(result.value))
-    #
-    # print(u'前序遍历:')
-    # tree.pre_order(tree.root)
-    #
-    # print(u'中序遍历:')
-    # tree.in_order(tree.root)
-    #
-    # print(u'后序遍历:')
-    # tree.bac_order(tree.root)

@@ -29,7 +29,7 @@ class BinaryTree(Node):
         pass
 
     @abstractmethod
-    def find(self, value) -> Node:
+    def search(self, value):
         """ 查找
         :param value:
         :return:
