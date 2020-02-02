@@ -15,7 +15,10 @@ class Node(object):
 
 class BinaryTree(Node):
     def __init__(self):
-        super(__class__, self).__init__()
+        self.root = None
+        self._pre_nums = []
+        self._in_nums = []
+        self._post_nums = []
 
     @abstractmethod
     def insert(self, value):
@@ -26,7 +29,7 @@ class BinaryTree(Node):
         pass
 
     @abstractmethod
-    def find(self, value):
+    def find(self, value) -> Node:
         """ 查找
         :param value:
         :return:
@@ -42,7 +45,7 @@ class BinaryTree(Node):
         pass
 
     @abstractmethod
-    def get_max(self, value):
+    def get_max(self):
         """ 获取最大值
         :param value:
         :return:
@@ -50,7 +53,7 @@ class BinaryTree(Node):
         pass
 
     @abstractmethod
-    def get_min(self, value):
+    def get_min(self):
         """ 获取最小值
         :param value:
         :return:
@@ -85,7 +88,7 @@ class BinaryTree(Node):
         :return:
         """
         # TODO: 待补充
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def dfs(self):
@@ -94,3 +97,4 @@ class BinaryTree(Node):
         :return:
         """
         # TODO: 待补充
+        pass

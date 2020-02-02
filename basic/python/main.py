@@ -4,13 +4,13 @@
 # @Date  : 2019-03-01
 # @Desc  :
 
-# from data_structure.tree import binary_search_tree
-from data_structure.tree import heap
+from data_structure.tree import binary_search_tree
+# from data_structure.tree import heap
 
 
 def main():
-    heap.test()
-    # binary_search_tree.test()
+    binary_search_tree.main()
+    # heap.test()
 
 
 if __name__ == '__main__':
