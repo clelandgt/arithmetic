@@ -126,17 +126,17 @@ def test():
 
     heap = Heap()
     heap.build_heap([33, 27, 21, 16, 13, 15, 9, 5, 6, 7, 8, 1, 2])
-    print '初始化堆: ', heap.data
+    print(u'初始化堆: ', heap.data)
 
     heap.insert(22)
-    print u'堆插入后: ', heap.data
+    print(u'堆插入后: ', heap.data)
 
     heap.delete_top()
-    print u'堆插删除头元素: ', heap.data
+    print(u'堆插删除头元素: ', heap.data)
 
     # 堆排序测试
     heap = Heap()
     heap.build_heap([2, 8, 10, 1, 3, 7, 5, 6, 9, 20, 15])
-    print u'堆化的元素: ', heap.data
+    print(u'堆化的元素: ', heap.data)
     heap.sort()
-    print u'堆排序后的元素: ', heap.data
+    print(u'堆排序后的元素: ', heap.data)
