@@ -74,15 +74,61 @@ class BinarySearchTree(BinaryTree):
         """ 删除数据
         有以下三种场景：
         1. 无子节点: 直接删除
-        2. 只有一个子节点: 该节点的父节点指向该子节点
-        3. 左右子节点都有：该节点的父节点指向右子节点树里的最小值节点。
+        2. 只有一个子节点树: 该节点的父节点指向该子节点
+        3. 左右子节点树都有：该节点的父节点指向右子节点树里的最小值节点。
         :param value:
         :return:
         """
         # 定位节点
         del_node = self.search(value)
+        if del_node:
+            self._delete(del_node)
+
+    def _delete(self, node: Node):
+        if node == self.root:
+            self.root = None
+            return
 
         # 1. 无子节点
+        if node.left is None and node.right is None:
+            if node.value < node.parent.value:
+                node.parent.left = None
+            else:
+                node.parent.right = None
+
+        # 2. 只有一个子节点树
+        elif node.left is not None and node.right is None:
+            if node.value < node.parent.value:
+                node.parent.left = node.left
+            else:
+                node.parent.right = node.left
+            node.left.parent = node.parent
+            node.parent = None
+            node.left = None
+        elif node.left is None and node.right is not None:
+            if node.value < node.parent.value:
+                node.parent.left = node.right
+            else:
+                node.parent.right = node.right
+            node.right.parent = node.parent
+            node.parent = None
+            node.right = None
+
+        # 3. 左右子节点树都有
+        # 找到右节点树最小值
+        else:
+            min_node = self._get_min(node.right)
+            if node.value < node.parent.value:
+                node.parent.left = min_node
+            else:
+                node.parent.right = min_node
+            min_node.parent = node.parent
+            min_node.left = node.left
+            min_node.right = node.right
+
+            node.left = None
+            node.right = None
+            node.parent = None
 
     def search(self, value):
         """ 查找数据
@@ -179,7 +225,7 @@ class BinarySearchTree(BinaryTree):
         if node is None:
             return
         if node.left is None and node.right is None:
-            return node.value
+            return node
         return self._get_max(node.right)
 
     def get_min(self):
@@ -193,7 +239,7 @@ class BinarySearchTree(BinaryTree):
         if node is None:
             return
         if node.left is None and node.right is None:
-            return node.value
+            return node
         return self._get_min(node.left)
 
 
@@ -224,6 +270,9 @@ def main():
     print('find 10 in binary tree: ', tree.search(10).value)
 
     # 3. 删除
+    tree.delete(11)
+    tree.delete(9)
+    tree.delete(16)
 
     # 4. 遍历(前、中、后序)
     print('pre order: ', tree.pre_order())
@@ -231,8 +280,6 @@ def main():
     print('post order: ', tree.post_order())
 
     # 5. 获取最小值，最大值。
-    print('trees min value: ', tree.get_min())
-    print('trees max value: ', tree.get_max())
+    print('trees min value: ', tree.get_min().value)
+    print('trees max value: ', tree.get_max().value)
 
-    # result = tree.find(10)
-    # print('find 10 in tree, result: {}'.format(result.value))
