@@ -31,9 +31,7 @@ class Solution1:
         if node1.val != node2.val:
             return False
         else:
-            result1 = self.pre_order(node1.left, node2.left)
-            result2 = self.pre_order(node1.right, node2.right)
-            return result1 & result2
+            return self.pre_order(node1.left, node2.left) & self.pre_order(node1.right, node2.right)
 
 
 def main():
