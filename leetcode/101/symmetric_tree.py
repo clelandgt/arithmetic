@@ -13,6 +13,7 @@ class TreeNode:
 
 
 class Solution1:
+    """未实现"""
     def __init__(self):
         self._in_nums = []
 
@@ -69,6 +70,14 @@ class Solution2:
             return False
 
         return node1.val == node2.val and self.is_mirror(node1.left, node2.right) and self.is_mirror(node1.right, node2.left)
+
+
+class Solution3:
+    def __init__(self):
+        pass
+
+    def isSymmetric(self, root: TreeNode) -> bool:
+        pass
 
 
 def main():
