@@ -25,6 +25,7 @@ def selection_sort1(l):
 
 
 def selection_sort2(nums):
+    """基于递归"""
     return _selection_sort2(nums, 0)
 
 
