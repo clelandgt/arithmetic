@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
 __author__ = 'cleland'
+""" 插入排序
+已排序的[0, n-1]加入n后再排序。
+"""
 
 
 def insert_sort1(nums):
-    """插入排序 循环的方式实现"""
+    """循环的方式实现"""
     for i in range(1, len(nums)):
         for j in range(1, i+1)[::-1]:
             if nums[j] < nums[j-1]:
@@ -13,7 +16,7 @@ def insert_sort1(nums):
 
 
 def insert_sort2(nums):
-    """插入排序 递归的方式实现"""
+    """递归的方式实现"""
     return _insert_sort2(nums, len(nums))
 
 
