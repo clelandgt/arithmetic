@@ -1,11 +1,14 @@
-# -*- coding:utf-8 -*-
-""" 归并排序
-"""
+# -*- coding: utf-8 -*-
+# @File  : merge_sort.py
+# @Author: clelandgt@163.com
+# @Date  : 2020-03-02
+# @Desc  : 归并排序
+
 
 def merge(left, right):
     result = []
     while len(left) > 0 and len(right) > 0:
-        if left[0] < right[0]:
+        if left[0] <= right[0]:
             result.append(left[0])
             del left[0]
         else:
@@ -24,17 +27,19 @@ def merge_sort(l):
     """
     if len(l) <= 1:
         return l
-    middle = len(l) / 2
+
+    middle = int(len(l) / 2)
+
     left = merge_sort(l[:middle])
-    right =merge_sort(l[middle:])
+    right = merge_sort(l[middle:])
     return merge(left, right)
 
 
 def main():
     l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print ('before sort:', l1)
+    print('before sort:', l1)
     l2 = merge_sort(l1)
-    print ('after sort:', l2)
+    print('after sort:', l2)
 
 
 if __name__ == '__main__':
