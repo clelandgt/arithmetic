@@ -163,24 +163,20 @@ class BinarySearchTree(BinaryTree):
             else:
                 cur_node = cur_node.right
 
-    # def breadth_travel(self):
-    #     order_nums = []
-    #     if self.root is None:
-    #         return
-    #     order_nums.append(self.root.value)
-    #     return self._breadth_travel(self.root, order_nums)
-    #
-    # def _breadth_travel(self, node: Node, order_nums):
-    #     if node is None:
-    #         return
-    #     if node.left is not None:
-    #         order_nums.append(node.left.value)
-    #     if node.right is not None:
-    #         order_nums.append(node.right.value)
-    #
-    #     self._breadth_travel(node.left, order_nums)
-    #     self._breadth_travel(node.right, order_nums)
-    #     return order_nums
+    def breadth_travel(self):
+        """ 广度遍历 """
+        order_nums = []
+        queue = []
+        queue.append(self.root)
+        while queue:
+            node = queue.pop(0)
+            order_nums.append(node.value)
+            if node.left is not None:
+                queue.append(node.left)
+            if node.right is not None:
+                queue.append(node.right)
+
+        return order_nums
 
     def pre_order(self):
         """ 前序遍历
