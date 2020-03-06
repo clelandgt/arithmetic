@@ -163,6 +163,25 @@ class BinarySearchTree(BinaryTree):
             else:
                 cur_node = cur_node.right
 
+    def breadth_travel(self):
+        order_nums = []
+        if self.root is None:
+            return
+        order_nums.append(self.root.value)
+        return self._breadth_travel(self.root, order_nums)
+
+    def _breadth_travel(self, node: Node, order_nums):
+        if node is None:
+            return
+        if node.left is not None:
+            order_nums.append(node.left.value)
+        if node.right is not None:
+            order_nums.append(node.right.value)
+
+        self._breadth_travel(node.left, order_nums)
+        self._breadth_travel(node.right, order_nums)
+        return order_nums
+
     def pre_order(self):
         """ 前序遍历
         当前节点->左子节点->右子节点: r->preOrder(r->left)->preOrder(r->right)
@@ -269,15 +288,16 @@ def main():
     # 2. 查找
     print('find 10 in binary tree: ', tree.search(10).value)
 
-    # 3. 删除
-    tree.delete(11)
-    tree.delete(9)
-    tree.delete(16)
+    # 3. 删除(暂时有问题，节点形成了环)
+    # tree.delete(11)
+    # tree.delete(9)
+    # tree.delete(16)
 
     # 4. 遍历(前、中、后序)
     print('pre order: ', tree.pre_order())
     print('in order: ', tree.in_order())
     print('post order: ', tree.post_order())
+    print('breadth travel: ', tree.breadth_travel())  # 还存在一点小问题。
 
     # 5. 获取最小值，最大值。
     print('trees min value: ', tree.get_min().value)
