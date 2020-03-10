@@ -13,11 +13,17 @@ eg:  2,4,3,1,5,6 逆序个数为4：(2,1) (4,3) (4,1) (3,1)
 
 def calc_sort_degree1(nums):
     """ 暴力求解直接遍历 """
-    pass
+    result = 0
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] >= nums[j]:
+                result += 1
+    return result
 
 
 def main():
-    pass
+    nums = [2, 4, 3, 1, 5, 6]
+    print("sort degree: ", calc_sort_degree1(nums))
 
 
 if __name__ == '__main__':
