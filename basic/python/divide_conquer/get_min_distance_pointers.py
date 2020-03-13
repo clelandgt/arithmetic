@@ -5,17 +5,15 @@
 # @Desc  :
 
 """
-问题描述:
-    二维平面上有 n 个点，如何快速计算出两个距离最近的点对
-法一: 暴力求解O(n^2)
+问题描述: 二维平面上有 n 个点，如何快速计算出两个距离最近的点对
 """
 
 
 def get_min_distance_pointers1(pointers):
+    """ 暴力求解: O(n^2), 依次遍历两两比较 """
     pointer1 = None
     pointer2 = None
     min_distance = float('inf')
-    """ 暴力求解 """
     for i in range(len(pointers)):
         for j in range(i+1, len(pointers)):
             distance = ((pointers[i][0]-pointers[j][0]) ** 2 + (pointers[i][1]-pointers[j][1]) ** 2) ** 0.5
@@ -24,6 +22,10 @@ def get_min_distance_pointers1(pointers):
                 pointer1 = pointers[i]
                 pointer2 = pointers[j]
     return pointer1, pointer2
+
+
+def get_min_distance_pointers(pointers):
+    """ 分治解决 """
 
 
 def main():
