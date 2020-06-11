@@ -20,8 +20,14 @@ def timeit(method):
         start_time = time.time()
         result = method(*args, **kw)
         end_time = time.time()
-        print('spent time: {}'.format(end_time-start_time))
-        return  result
+        spend_time = int((end_time - start_time) * 1000)
+        if 'log_time' in kw:
+            name = kw.get('log_name', method.__name__.upper())
+            kw['log_time'][name] = spend_time
+        else:
+            print('{0}: {1} ms'.format(method.__name__, spend_time))
+
+        return result
     return timed
 
 
