@@ -12,6 +12,16 @@ class ListNode:
         self.next = next
 
 
+def print_link(l: ListNode):
+    while l:
+        if l.next is not None:
+            print(f'{l.val}', end='->')
+        else:
+            print(f'{l.val}', end='')
+        l = l.next
+    print('\n')
+
+
 class Solution1:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         """
@@ -44,14 +54,36 @@ class Solution1:
 
         return result
 
-    @staticmethod
-    def print_link(l: ListNode):
-        while l:
-            if l.next is not None:
-                print(f'{l.val}', end='->')
-            else:
-                print(f'{l.val}', end='')
-            l = l.next
+
+class Solution2:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # 头指针
+        head = ListNode(0)
+        p = head
+        carry = 0
+        while l1 or l2:
+            total = 0
+            # l1与l2都非空
+            if l1 and l2:
+                total = l1.val + l2.val + carry
+                l1 = l1.next
+                l2 = l2.next
+            elif l1 and not l2:
+                total = l1.val + carry
+                l1 = l1.next
+            elif not l1 and l2:
+                total = l2.val + carry
+                l2 = l2.next
+
+            p.next = ListNode(total % 10)
+            carry = total // 10
+            p = p.next
+
+        # 最高位是否有进位
+        if carry == 1:
+            p.next = ListNode(carry)
+
+        return head.next
 
 
 def main():
@@ -61,7 +93,13 @@ def main():
     l2 = ListNode(1, ListNode(8, ListNode(5)))
     s = Solution1()
     links = s.addTwoNumbers(l1, l2)
-    s.print_link(links)
+    print('Solution1: ')
+    print_link(links)
+
+    s = Solution2()
+    links = s.addTwoNumbers(l1, l2)
+    print('Solution2: ')
+    print_link(links)
 
 
 if __name__ == '__main__':
