@@ -7,9 +7,9 @@
 
 class Solution1:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        """暴力求解
-        时间复杂度 O(n^2)
-        空间复杂度 O(1)
+        """暴力求解 Brute Force
+        时间复杂度 O(n^3)
+        空间复杂度 O(n)
         """
         if len(s) == 0 or not s:
             return 0
@@ -19,7 +19,7 @@ class Solution1:
             index = 1
             for j in range(i+1, len(s)):
                 # i~j 区间内，是否有重复
-                if len(s[i:j+1]) == len(set((s[i:j+1]))):
+                if (j+1-i) == len(set((s[i:j+1]))):
                     index += 1
                 else:
                     break
