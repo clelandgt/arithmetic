@@ -13,57 +13,44 @@ class ListNode:
 
 
 class Solution1:
-    @staticmethod
-    def reversed_link(l):
-        """ 反转链表函数
-            2->4->3->1
-        =>  2<-4<-3<-1
-        :param l:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """
+        时间复杂度 O(n), 空间复杂度 O(n)
+        :param l1:
+        :param l2:
         :return:
         """
-        result = None
-        last_node = None
-        while l is not None:
-            result = ListNode(l.val, last_node)
-            last_node = result
-            l = l.next
-
-        return result
-
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        # 反转链表
-        l11 = self.reversed_link(l1)
-        l22 = self.reversed_link(l2)
-
-        # ADD
         result = ListNode(0, None)
         current_node = result
-        while True:
-            x1, x2 = 0, 0
-            if l11 is not None:
-               x1 = l11.val
-            if l22 is not None:
-               x2 = l22.val
+        while l1 or l2:
+            x1 = l1.val if l1 is not None else 0
+            x2 = l2.val if l2 is not None else 0
 
-            total = current_node.val + x1 + x2
+            total = current_node.val + (x1 + x2)
             current_node.val = total % 10
-            if l11 is not None:
-                l11 = l11.next
-            if l22 is not None:
-                l22 = l22.next
-
-            if l11 is None and l22 is None:
-                break
             current_node.next = ListNode(int(total/10), None)
             current_node = current_node.next
 
-        # return 结果
+            l1 = l1.next if l1 is not None else None
+            l2 = l2.next if l2 is not None else None
+
+        # 当最后节点为0时，剔除。
+        link = result
+        while link.next is not None:
+            if link.next.next is None and link.next.val == 0:
+                link.next = None
+                break
+            link = link.next
+
         return result
 
     @staticmethod
     def print_link(l: ListNode):
         while l:
-            print(f'{l.val}', end='->')
+            if l.next is not None:
+                print(f'{l.val}', end='->')
+            else:
+                print(f'{l.val}', end='')
             l = l.next
 
 
