@@ -8,7 +8,7 @@
 class Solution1:
     def lengthOfLongestSubstring(self, s: str) -> int:
         """暴力求解 Brute Force
-        时间复杂度 O(n^3)
+        时间复杂度 O(n^2)
         空间复杂度 O(n)
         """
         if len(s) == 0 or not s:
@@ -29,11 +29,41 @@ class Solution1:
         return max_len
 
 
+class Solution2:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        """ 移动窗口求解
+        时间复杂度 O(n)
+        空间复杂度
+        """
+        if len(s) == 0 or not s:
+            return 0
+
+        uniq_char = {}
+        max_len = 1
+        start = 0
+        for i, value in enumerate(s):
+            if value in uniq_char:
+                index = uniq_char[value] + 1
+                if index > start:
+                    start = index
+
+            length = i - start + 1
+            max_len = length if length > max_len else max_len
+            uniq_char[value] = i
+
+        return max_len
+
+
 def main():
     test_cases = ["abcabcbb", "bbbbb", "pwwkew"]
 
     s = Solution1()
     print('***** Solution1 *****')
+    for case in test_cases:
+        print(f"{case}: {s.lengthOfLongestSubstring(case)}")
+
+    s = Solution2()
+    print('***** Solution2 *****')
     for case in test_cases:
         print(f"{case}: {s.lengthOfLongestSubstring(case)}")
 
