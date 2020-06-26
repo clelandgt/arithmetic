@@ -8,6 +8,12 @@ from typing import List
 
 class Solution1:
     def singleNumber(self, nums: List[int]) -> int:
+        """
+        时间复杂度： O(n)
+        空间复杂度： O(n)
+        :param nums:
+        :return:
+        """
         result = []
         for item in nums:
             if item not in result:
@@ -18,7 +24,10 @@ class Solution1:
 
 
 class Solution2:
-    """ 使用散列表 """
+    """ 使用散列表
+        时间复杂度： O(n)
+        空间复杂度： O(n)
+    """
     def singleNumber(self, nums: List[int]) -> int:
         tmp_dict = {}
         for item in nums:
@@ -30,7 +39,10 @@ class Solution2:
 
 
 class Solution3:
-    """ 使用散列表+异常处理 """
+    """ 使用散列表+异常处理
+        时间复杂度： O(n)
+        空间复杂度： O(n)
+    """
     def singleNumber(self, nums: List[int]) -> int:
         tmp_dict = {}
         for item in nums:
@@ -44,6 +56,9 @@ class Solution3:
 class Solution4:
     """ math
         2∗(a+b+c)−(a+a+b+b+c)=c
+
+        时间复杂度: O(1)
+        空间复杂度: O(1)
     :return:
     """
     def singleNumber(self, nums: List[int]) -> int:
