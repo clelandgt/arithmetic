@@ -4,7 +4,6 @@
 # @Date  : 2020-06-27
 # @Desc  :
 from typing import List
-import collections
 
 
 class Solution1:
@@ -26,8 +25,6 @@ def main():
     s = Solution1()
     for test_case in test_cases:
         print(s.groupAnagrams(test_case))
-
-
 
 
 if __name__ == '__main__':
