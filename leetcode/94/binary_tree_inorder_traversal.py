@@ -16,6 +16,10 @@ class TreeNode:
 
 
 class Solution1:
+    """ 递归遍历
+    时间复杂度: O(n)
+    空间复杂度: O(n)
+    """
     _in_nums = []
 
     def inorderTraversal(self, root: TreeNode) -> List[int]:
