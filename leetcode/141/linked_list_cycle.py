@@ -13,6 +13,10 @@ class ListNode:
 
 
 class Solution1:
+    """
+    时间复杂度: O(n)
+    空间复杂度: O(n)
+    """
     def hasCycle(self, head: ListNode) -> bool:
         result = set()
 
