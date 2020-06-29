@@ -7,38 +7,35 @@
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x, next=None):
         self.val = x
-        self.next = None
+        self.next = next
 
 
 class Solution1:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         uniq = set()
 
-        while headA and headB:
-            if id(headA) in uniq:
-               return headA.val
-            else:
-               uniq.add((id(headA)))
-            if id(headB) in uniq:
-               return headB.val
-            else:
-               uniq.add(id(headB))
+        while headA:
+            uniq.add((id(headA)))
             headA = headA.next
+        while headB:
+            if id(headB) in uniq:
+               return headB
             headB = headB.next
 
 
 def main():
     # listA = [4,1,8,4,5], listB = [5,0,1,8,4,5]
+    l11 = ListNode(8, ListNode(4, ListNode(5)))
     test_cases = [
-        {'l1': ListNode(4, ListNode(1, ListNode(8, ListNode(4, ListNode(5))))), 'l2': ListNode(5, ListNode(0, ListNode(1, ListNode(8, ListNode(4, ListNode(5))))))}
+        {'l1': ListNode(4, ListNode(1, l11)), 'l2': ListNode(5, ListNode(0, ListNode(1, l11)))}
     ]
 
     print('Solution1')
     s = Solution1()
     for test_case in test_cases:
-        s.getIntersectionNode((test_case['l1'], test_case['l2']))
+        print(s.getIntersectionNode(test_case['l1'], test_case['l2']).val)
 
 
 if __name__ == '__main__':
