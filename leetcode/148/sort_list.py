@@ -12,6 +12,17 @@ class ListNode:
         self.next = next
 
 
+def print_link(head: ListNode) -> ListNode:
+    p = head
+    while p:
+        if p.next:
+            print(p.val, end='->')
+        else:
+            print(p.val)
+        p = p.next
+    print('\n')
+
+
 class Solution1:
     def sortList(self, head: ListNode) -> ListNode:
         """选择排序
@@ -31,15 +42,51 @@ class Solution1:
 
         return head
 
-    def print_link(self, head: ListNode) -> ListNode:
-        p = head
-        while p:
-            if p.next:
-                print(p.val, end='->')
+
+class Solution2:
+    def sortList(self, head: ListNode) -> ListNode:
+        """
+        """
+        if not head or not head.next:
+            return head
+
+        # mid
+        fast = head.next
+        slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+        second = slow.next
+        slow.next = None
+        left = self.sortList(head)
+        right = self.sortList(second)
+        return self.merge(left, right)
+
+    # l = 2, 7, 9   r = 3, 5, 8
+    # m = 2, 3, 5,
+    def merge(self, left: ListNode, right: ListNode) -> ListNode:
+        if not left or not right:
+            return left or right
+        # 找到以left, right为起点
+        if left.val > right.val:
+            right, left = left, right
+        head = pre = left
+        left = left.next
+
+        while left and right:
+            if left.val < right.val:
+                left = left.next
             else:
-                print(p.val)
-            p = p.next
-        print('\n')
+                next = pre.next
+                pre.next = right
+                tmp = right.next
+                right.next = next
+                right = tmp
+
+            pre = pre.next
+        pre.next = left or right
+        return head
 
 
 def main():
@@ -54,7 +101,13 @@ def main():
     s1 = Solution1()
     for test_case in test_cases:
         result = s1.sortList(test_case)
-        s1.print_link(result)
+        print_link(result)
+
+    print('Solution2')
+    s2 = Solution2()
+    for test_case in test_cases:
+        result = s2.sortList(test_case)
+        print_link(result)
 
 
 if __name__ == '__main__':
