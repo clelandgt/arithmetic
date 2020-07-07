@@ -37,6 +37,24 @@ class Solution1:
         self.recursion(node.right, cur_deep)
 
 
+class Solution2:
+    """层层遍历"""
+    def maxDepth(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+
+        max_deep = 0
+        level = [root]
+        while len(level) > 0:
+            temp = []
+            temp.extend([item.left for item in level if item is not None and item.left is not None])
+            temp.extend([item.right for item in level if item is not None and item.right is not None])
+            level = temp
+            max_deep += 1
+
+        return max_deep
+
+
 def main():
 
     tree = TreeNode(3)
@@ -47,9 +65,13 @@ def main():
     # tree.right.left.left = TreeNode(12)
     # tree.right.left.right = TreeNode(13)
 
+    print('Solution1')
     s1 = Solution1()
     print(s1.maxDepth(tree))
 
+    print('Solution2')
+    s2 = Solution2()
+    print(s2.maxDepth(tree))
 
 if __name__ == '__main__':
     main()
