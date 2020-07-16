@@ -18,18 +18,13 @@ class Solution1:
         self.result = TreeNode(0)
 
     def mergeTrees(self, t1: TreeNode, t2: TreeNode) -> TreeNode:
-        def merge(current: TreeNode, t1: TreeNode, t2: TreeNode) -> TreeNode:
-            if t1 is None and t2 is None:
-                return
-            t1_val = t1.val if t1 is not None else 0
-            t2_val = t2.val if t2 is not None else 0
-            current.val = t1_val + t2_val
-
-            merge(current.left, t1.left, t2.left)
-            merge(current.right, t1.right, t2.right)
-
-        merge(self.result, t1, t2)
-        return self.result
+        if t1 and t2:
+            current = TreeNode(t1.val + t2.val)
+            current.left = self.mergeTrees(t1.left, t2.left)
+            current.right = self.mergeTrees(t1.right, t2.right)
+            return current
+        else:
+            return t1 or t2
 
 
 def main():
