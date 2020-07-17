@@ -8,21 +8,15 @@ from typing import List
 
 class Solution1:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        result = []
-        start, end = None, None
-        first = True
-        for interval in intervals:
-            if first:
-                start, end = interval[0], interval[1]
-                first = False
-                continue
-            if end < interval[0]:
-                result.append([start, end])
-                start, end = interval[0], interval[1]
-            elif end >= interval[0]:
-                end = interval[1] if end < interval[1] else end
-        if start and end:
-            result.append([start, end])
+        if len(intervals) == 0:
+            return []
+        intervals = sorted(intervals, key=lambda x: x[0])
+        result = [intervals[0]]
+        for interval in intervals[1:]:
+            if result[-1][-1] >= interval[0]:
+                result[-1][-1] = interval[1] if result[-1][-1] < interval[1] else result[-1][-1]
+            else:
+                result.append(interval)
 
         return result
 
