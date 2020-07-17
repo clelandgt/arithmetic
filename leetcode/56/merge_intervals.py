@@ -9,16 +9,30 @@ from typing import List
 class Solution1:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         result = []
-        start = None
-        end = None
+        start, end = None, None
+        first = True
         for interval in intervals:
-            if len(result) == 0:
-                pass
+            if first:
+                start, end = interval[0], interval[1]
+                first = False
+                continue
+            if end < interval[0]:
+                result.append([start, end])
+                start, end = interval[0], interval[1]
+            elif end >= interval[0]:
+                end = interval[1] if end < interval[1] else end
+        if start and end:
+            result.append([start, end])
+
+        return result
 
 
 def main():
     test_cases = [
-        [[1, 3], [2, 6], [8, 10], [15, 18]]
+        [[1, 3], [2, 6], [8, 10], [15, 18]],
+        [[1, 4], [4, 5]],
+        [[1, 4], [0, 4]],
+        []
     ]
 
     print('Solution1')
