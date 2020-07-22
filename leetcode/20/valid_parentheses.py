@@ -5,9 +5,31 @@
 # @Desc  :
 
 
+class Solution1:
+    def isValid(self, s: str) -> bool:
+        stack, match = [], {')': '(', ']': '[', '}': '{'}
+        for ch in s:
+            if ch in match:
+                if not (stack and stack.pop() == match[ch]):
+                    return False
+            else:
+                stack.append(ch)
+        return not stack
+
 
 def main():
-    pass
+    test_cases = [
+        "()",
+        "()[]{}",
+        "(]",
+        "([)]",
+        "{[]}"
+    ]
+
+    print('Solution1')
+    s1 = Solution1()
+    for test_case in test_cases:
+        print(s1.isValid(test_case))
 
 
 if __name__ == '__main__':
