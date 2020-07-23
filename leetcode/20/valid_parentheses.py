@@ -27,7 +27,7 @@ def main():
     ]
 
     print('Solution1')
-    s1 = Solution2()
+    s1 = Solution1()
     for test_case in test_cases:
         print(s1.isValid(test_case))
 
