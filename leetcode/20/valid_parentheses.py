@@ -8,12 +8,12 @@
 class Solution1:
     def isValid(self, s: str) -> bool:
         stack, match = [], {')': '(', ']': '[', '}': '{'}
-        for ch in s:
-            if ch in match:
-                if not (stack and stack.pop() == match[ch]):
+        for item in s:
+            if item in match:
+                if not (stack and stack.pop() == match[item]):
                     return False
             else:
-                stack.append(ch)
+                stack.append(item)
         return not stack
 
 
@@ -27,7 +27,7 @@ def main():
     ]
 
     print('Solution1')
-    s1 = Solution1()
+    s1 = Solution2()
     for test_case in test_cases:
         print(s1.isValid(test_case))
 
