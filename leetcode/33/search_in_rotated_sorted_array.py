@@ -3,6 +3,12 @@
 # @Author: clelandgt@163.com
 # @Date  : 2020-07-25
 # @Desc  :
+from typing import List
+
+
+class Solution1:
+    def search(self, nums: List[int], target: int) -> int:
+        pass
 
 
 def main():
