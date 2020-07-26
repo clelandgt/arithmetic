@@ -36,6 +36,32 @@ class Solution1:
         return _search(nums, 0, nums_len-1, target)
 
 
+class Solution2:
+    """循环"""
+    def search(self, nums: List[int], target: int) -> int:
+        if nums is None or len(nums) == 0:
+            return -1
+        nums_len = len(nums)
+        left, right = 0, nums_len - 1
+
+        while left <= right:
+            mid = int((left + right) / 2)
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+
+        return -1
+
+
 def main():
     test_cases = [
         ([4, 5, 6, 7, 0, 1, 2], 0),
@@ -49,6 +75,11 @@ def main():
     s1 = Solution1()
     for test_case in test_cases:
         print(s1.search(test_case[0], test_case[1]))
+
+    print('Solution2')
+    s2 = Solution2()
+    for test_case in test_cases:
+        print(s2.search(test_case[0], test_case[1]))
 
 
 if __name__ == '__main__':
