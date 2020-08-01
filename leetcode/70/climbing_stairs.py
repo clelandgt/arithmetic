@@ -3,3 +3,25 @@
 # @Author: clelandgt@163.com
 # @Date  : 2020-08-01
 # @Desc  :
+
+
+class Solution1:
+    """使用传统递归超时"""
+    def climbStairs(self, n: int) -> int:
+        if n in (1, 2):
+            return n
+        return self.climbStairs(n-1) + self.climbStairs(n-2)
+
+
+def main():
+    test_cases = [2, 3]
+
+    print('Solution1')
+    s1 = Solution1()
+    for test_case in test_cases:
+
+        print(s1.climbStairs(test_case))
+
+
+if __name__ == '__main__':
+    main()
