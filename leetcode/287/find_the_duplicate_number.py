@@ -18,7 +18,7 @@ class Solution1:
 class Solution2:
     def findDuplicate(self, nums: List[int]) -> int:
         lo, hi = 1, len(nums)-1
-        while lo < hi:
+        while lo <= hi:
             mid = int((lo + hi) / 2)
             less, equal = 0, 0
             for num in nums:
@@ -37,7 +37,8 @@ class Solution2:
 def main():
     test_cases = [
         [1, 3, 4, 2, 2],
-        [3, 1, 3, 4, 2]
+        [3, 1, 3, 4, 2],
+        [1, 1]
     ]
 
     print('Solution1')
