@@ -17,7 +17,7 @@ class Solution1:
             else:
                 value_counts[num] += 1
             if value_counts[num] > int(size/2):
-                return value_counts[num]
+                return num
 
 
 def main():
