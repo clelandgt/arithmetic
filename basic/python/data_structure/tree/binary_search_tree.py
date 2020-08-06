@@ -271,8 +271,17 @@ class BinarySearchTree(BinaryTree):
                 queue.put(node.right)
 
     def dfs(self):
-        pass
+        return self._dfs(self.root)
 
+    def _dfs(self, node: Node) -> Node:
+        if node is None:
+            return
+
+        print(node.value)
+        if node.left:
+            self._dfs(node.left)
+        if node.right:
+            self._dfs(node.right)
 
 
 def main():
@@ -319,4 +328,8 @@ def main():
     # 6. bfs
     print('bfs:')
     tree.bfs()
+
+    # 7. dfs
+    print('dfs:')
+    tree.dfs()
 
