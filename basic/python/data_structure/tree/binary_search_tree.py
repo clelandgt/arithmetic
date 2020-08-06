@@ -4,6 +4,7 @@
 # @Date  : 2020-02-01
 # @Desc  :
 from . import Node, BinaryTree
+from queue import Queue
 
 
 class BinarySearchTree(BinaryTree):
@@ -257,12 +258,18 @@ class BinarySearchTree(BinaryTree):
             return node
         return self._get_min(node.left)
 
-    def dfs(self):
-        pass
-
     def bfs(self):
-        pass
+        queue = Queue()
+        queue.put(self.root)
 
+        while not queue.empty():
+            node = queue.get()
+            print(node.value)
+
+            if node.left:
+                queue.put(node.left)
+            if node.right:
+                queue.put(node.right)
 
 
 def main():
@@ -305,4 +312,8 @@ def main():
     # 5. 获取最小值，最大值。
     print('trees min value: ', tree.get_min().value)
     print('trees max value: ', tree.get_max().value)
+
+    # 6. bfs
+    print('bfs:')
+    tree.bfs()
 
