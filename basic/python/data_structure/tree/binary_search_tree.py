@@ -257,6 +257,13 @@ class BinarySearchTree(BinaryTree):
             return node
         return self._get_min(node.left)
 
+    def dfs(self):
+        pass
+
+    def bfs(self):
+        pass
+
+
 
 def main():
     u""" 构建的基础二叉树
