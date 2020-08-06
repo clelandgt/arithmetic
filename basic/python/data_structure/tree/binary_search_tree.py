@@ -265,11 +265,14 @@ class BinarySearchTree(BinaryTree):
         while not queue.empty():
             node = queue.get()
             print(node.value)
-
             if node.left:
                 queue.put(node.left)
             if node.right:
                 queue.put(node.right)
+
+    def dfs(self):
+        pass
+
 
 
 def main():
