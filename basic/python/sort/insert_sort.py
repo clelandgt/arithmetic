@@ -8,37 +8,72 @@
 """
 
 
-def insert_sort(l):
-    """基于循环"""
-    for i in range(len(l)):
+# def insert_sort(l):
+#     """基于循环"""
+#     for i in range(len(l)):
+#         for j in range(1, i+1)[::-1]:
+#             if l[j] < l[j-1]:
+#                 l[j], l[j-1] = l[j-1], l[j]
+#     return l
+#
+#
+# def insert_sort2(l):
+#     """基于递归"""
+#     return _insert_sort2(l, len(l))
+#
+#
+# def _insert_sort2(l, n):
+#     if n == 0:
+#         return
+#     _insert_sort2(l, n-1)
+#
+#     for i in range(1, n)[::-1]:
+#         if l[i] < l[i-1]:
+#             l[i], l[i-1] = l[i-1], l[i]
+#
+#     return l
+
+def insert_sort1(nums):
+    """循环"""
+    for i in range(len(nums)):
         for j in range(1, i+1)[::-1]:
-            if l[j] < l[j-1]:
-                l[j], l[j-1] = l[j-1], l[j]
-    return l
+            if nums[j] < nums[j-1]:
+                nums[j], nums[j-1] = nums[j-1], nums[j]
+
+    return nums
 
 
-def insert_sort2(l):
-    """基于递归"""
-    return _insert_sort2(l, len(l))
+def insert_sort2(nums):
+    """递归"""
 
+    def _insert_sort2(nums, n):
+        if n == 0:
+            return
+        _insert_sort2(nums, n-1)
+        for i in range(1, n)[::-1]:
+            if nums[i] < nums[i-1]:
+                nums[i], nums[i-1] = nums[i-1], nums[i]
+    _insert_sort2(nums, len(nums))
 
-def _insert_sort2(l, n):
-    if n == 0:
-        return
-    _insert_sort2(l, n-1)
-
-    for i in range(1, n)[::-1]:
-        if l[i] < l[i-1]:
-            l[i], l[i-1] = l[i-1], l[i]
-
-    return l
+    return nums
 
 
 def main():
-    l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print('before sort:', l1)
-    l2 = insert_sort2(l1)
-    print('after sort:', l2)
+    test_cases = [
+        [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
+    ]
+
+    print('Solution1')
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        result = insert_sort1(test_case)
+        print('after sort:', result)
+
+    print('Solution2')
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        result = insert_sort2(test_case)
+        print('after sort:', result)
 
 
 if __name__ == '__main__':
