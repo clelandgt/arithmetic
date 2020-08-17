@@ -8,31 +8,6 @@
 """
 
 
-# def insert_sort(l):
-#     """基于循环"""
-#     for i in range(len(l)):
-#         for j in range(1, i+1)[::-1]:
-#             if l[j] < l[j-1]:
-#                 l[j], l[j-1] = l[j-1], l[j]
-#     return l
-#
-#
-# def insert_sort2(l):
-#     """基于递归"""
-#     return _insert_sort2(l, len(l))
-#
-#
-# def _insert_sort2(l, n):
-#     if n == 0:
-#         return
-#     _insert_sort2(l, n-1)
-#
-#     for i in range(1, n)[::-1]:
-#         if l[i] < l[i-1]:
-#             l[i], l[i-1] = l[i-1], l[i]
-#
-#     return l
-
 def insert_sort1(nums):
     """循环"""
     for i in range(len(nums)):
