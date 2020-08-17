@@ -15,23 +15,49 @@ for i in [0, n):
 """
 
 
-def selection_sort(l):
+def selection_sort1(nums):
     """基于循环"""
-    for i in range(len(l)):
+    for i in range(len(nums)):
         min_index = i
-        for j in range(i+1, len(l)):
-            if l[min_index] > l[j]:
+        for j in range(i+1, len(nums)):
+            if nums[j] < nums[min_index]:
                 min_index = j
-        l[i], l[min_index] = l[min_index], l[i]
+        nums[i], nums[min_index] = nums[min_index], nums[i]
 
-    return l
+    return nums
+
+
+def selection_sort2(nums):
+    """递归"""
+    def _selection_sorts(nums, n):
+        if n == len(nums):
+            return
+        min_index = n
+        for i in range(n, len(nums)):
+            if nums[i] < nums[min_index]:
+                min_index = i
+        nums[n], nums[min_index] = nums[min_index], nums[n]
+    _selection_sorts(nums, 0)
+
+    return nums
 
 
 def main():
-    l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print('before sort:', l1)
-    l2 = selection_sort(l1)
-    print('after sort:', l2)
+    test_cases = [
+        [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
+    ]
+
+    print('Solution1')
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        result = selection_sort1(test_case)
+        print('after sort:', result)
+
+    print('Solution2')
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        result = selection_sort2(test_case)
+        print('after sort:', result)
 
 
 if __name__ == '__main__':
