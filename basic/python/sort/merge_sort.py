@@ -19,19 +19,19 @@ def merge(left, right):
     return result
 
 
-def merge_sort(l):
-    """ 归并算法
+def merge_sort(nums):
+    """ 归并排序
+    时间复杂度：O(nlogn)
     该算法是采用分治的一种非常典型的应用。
     1. 将已有序的子序列合并，并得到完全有序的序列；
     2. 先使命每个子序列有序，再使子序列段间有序。若将两个有序表合成一个有序表，称为二路合并。
     """
-    if len(l) <= 1:
-        return l
-
-    middle = int(len(l) / 2)
-
-    left = merge_sort(l[:middle])
-    right = merge_sort(l[middle:])
+    size = len(nums)
+    if size == 1:
+        return nums
+    mid = int(size / 2)
+    left = merge_sort(nums[:mid])
+    right = merge_sort(nums[mid:])
     return merge(left, right)
 
 
