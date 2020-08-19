@@ -36,10 +36,13 @@ def merge_sort(l):
 
 
 def main():
-    l1 = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print('before sort:', l1)
-    l2 = merge_sort(l1)
-    print('after sort:', l2)
+    test_cases = [
+        [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
+    ]
+
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        print('after sort:', merge_sort(test_case))
 
 
 if __name__ == '__main__':
