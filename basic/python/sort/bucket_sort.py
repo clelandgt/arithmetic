@@ -8,15 +8,14 @@ BUCKET_SIZE = 5
 
 
 def bucket_sort(nums, bucket_size=BUCKET_SIZE):
-    max_value = max(nums)
-    min_value = min(nums)
+    min_value, max_value = min(nums), max(nums)
 
     # 分桶
-    bucket_count = ((max_value - min_value) // bucket_size) + 1
+    bucket_count = ((max_value - min_value) // BUCKET_SIZE) + 1
     buckets = [[] for _ in range(bucket_count)]
 
     for i in range(len(nums)):
-        buckets[int(nums[i] - min_value) // bucket_size].append(nums[i])
+        buckets[(nums[i] - min_value) // bucket_size].append(nums[i])
 
     # 桶内排序
     return sorted(
