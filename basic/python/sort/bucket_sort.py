@@ -25,10 +25,12 @@ def bucket_sort(nums, bucket_size=BUCKET_SIZE):
 
 
 def main():
-    nums = [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
-    print('before sort:', nums)
-    nums = bucket_sort(nums)
-    print('after sort:', nums)
+    test_cases = [
+        [5, 2, 4, 6, 10, 1, 3, 1, 23, 2, 9]
+    ]
+    for test_case in test_cases:
+        print('before sort:', test_case)
+        print('after sort:', bucket_sort(test_case))
 
 
 if __name__ == '__main__':
