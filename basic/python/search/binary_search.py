@@ -23,12 +23,14 @@ def _binary_search(nums, num, left, right):
 
 
 def main():
-    nums = [1, 2, 3, 7, 9, 10, 21, 100, 120, 130, 131, 140]
-    num = 10
-    index = binary_search(nums, num)
-    print('nums: ', nums)
-    print('search: ', num)
-    print('index: ', index)
+    test_cases = [
+        [[1, 2, 3, 7, 9, 10, 21, 100, 120, 130, 131, 140], 10]
+    ]
+    for test_case in test_cases:
+        index = binary_search(test_case[0], test_case[1])
+        print('nums: ', test_case[0])
+        print('search: ', test_case[1])
+        print('index: ', index)
 
 
 if __name__ == '__main__':
