@@ -6,7 +6,9 @@
 
 
 def binary_search1(nums, num):
-    """递归"""
+    """递归
+    时间复杂度: O(logn)
+    """
     def _binary_search(nums, num, left, right):
         if left > right:
             return -1
@@ -23,8 +25,19 @@ def binary_search1(nums, num):
 
 
 def binary_search2(nums, num):
-    """循环"""
-    pass
+    """循环
+    时间复杂度: O(logn)
+    """
+    left, right = 0, len(nums)-1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == num:
+            return mid
+        elif num < nums[mid]:
+            right = mid
+        else:
+            left = mid
 
 
 def main():
@@ -32,7 +45,14 @@ def main():
         [[1, 2, 3, 7, 9, 10, 21, 100, 120, 130, 131, 140], 10]
     ]
     for test_case in test_cases:
+        print('binary_search1')
         index = binary_search1(test_case[0], test_case[1])
+        print('nums: ', test_case[0])
+        print('search: ', test_case[1])
+        print('index: ', index)
+
+        print('binary_search2')
+        index = binary_search2(test_case[0], test_case[1])
         print('nums: ', test_case[0])
         print('search: ', test_case[1])
         print('index: ', index)
