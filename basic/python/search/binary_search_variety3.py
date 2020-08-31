@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @File  : binary_seach_variety3.py
+# @File  : binary_search_variety3.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-08-31
 # @Desc  : 二分查找第一个大于等于给定值的元素
