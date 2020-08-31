@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @File  : binary_search_variety.py
+# @File  : binary_search_variety1.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-08-31
-# @Desc  :
+# @Desc  : 二分查找第一个值等于给定值的元素
 
 
 def binary_search1(nums, num):
