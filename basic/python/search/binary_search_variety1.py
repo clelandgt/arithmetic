@@ -34,6 +34,5 @@ def main():
         print('index: ', index)
 
 
-
 if __name__ == '__main__':
     main()
