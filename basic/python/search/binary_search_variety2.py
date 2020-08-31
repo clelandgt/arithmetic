@@ -21,6 +21,8 @@ def binary_search1(nums, num):
             else:
                 left = mid + 1
 
+    return -1
+
 
 def main():
     test_cases = [
