@@ -15,6 +15,7 @@ class BinarySearchTree(BinaryTree):
         """ 插入数据
         1. 如头节点为空，插入头节点。
         2. 如果比当前节点小，则查找左子节点树，否则查找右子节点树。递归遍历，直到某个子节点为空时，插入数据。
+        3. 对于有相同的元素，不处理。
         :param value:
         :param parent:
         :return:
