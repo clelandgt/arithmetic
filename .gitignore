@@ -3,3 +3,4 @@
 *.plist
 *.idea
 *.pyc
+.python-version
