@@ -12,10 +12,11 @@ class Solution:
 
 def main():
     test_cases = [
-
+        3
     ]
     s1 = Solution()
-
+    for test_case in test_cases:
+        print(s1.numTrees(test_case))
 
 
 if __name__ == '__main__':
