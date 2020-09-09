@@ -15,7 +15,18 @@ class TreeNode:
 
 class Solution1:
     def isValidBST(self, root: TreeNode) -> bool:
-        pass
+        if root is None:
+            return True
+        if root.left is not None:
+            if root.val >= root.left.val:
+                return False
+            else:
+                self.isValidBST(root.left)
+        if root.right is not None:
+            if root.val <= root.right.val:
+                return False
+            else:
+                self.isValidBST(root.right)
 
 
 def main():
