@@ -3,6 +3,7 @@
 # @Author: clelandgt@163.com
 # @Date  : 2020-09-09
 # @Desc  :
+import sys
 
 
 # Definition for a binary tree node.
@@ -35,6 +36,21 @@ class Solution1:
             return True
 
 
+class Solution2:
+    def isValidBST(self, root: TreeNode,
+                   max_root_val: int = sys.maxsize,
+                   min_root_val: int = -sys.maxsize) -> bool:
+        if root:
+            # The current node must not statisfy any of the conditions
+            if root.val >= max_root_val or root.val <= min_root_val:
+                return False
+            else: # Check left-subtree and right-subtree
+                return (self.isValidBST(root.left, min(max_root_val, root.val), min_root_val)
+                        and self.isValidBST(root.right, max_root_val, max(min_root_val, root.val)))
+        else: # By default return true
+            return True
+
+
 def main():
     tree1 = TreeNode(2)
     tree1.left = TreeNode(1)
@@ -47,7 +63,7 @@ def main():
     tree2.right.right = TreeNode(6)
 
     test_cases = [tree1, tree2]
-    s1 = Solution1()
+    s1 = Solution2()
     for test_case in test_cases:
         print(s1.isValidBST(test_case))
 
