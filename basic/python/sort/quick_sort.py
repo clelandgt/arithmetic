@@ -6,18 +6,26 @@
 
 
 def quick_sort(nums):
-    if len(nums) <= 1:
+    def _quick_sort(nums, start, end):
+        if start >= end:
+            return
+        p = nums[start]
+        i = start
+        j = end
+        while i < j:
+            while i < j and nums[j] >= p:
+                j -= 1
+            nums[i] = nums[j]
+            while i < j and nums[i] <= p:
+                i += 1
+            nums[j] = nums[i]
+
+        nums[j] = p
+        _quick_sort(nums, start, i-1)
+        _quick_sort(nums, i+1, end)
         return nums
 
-    pivot = nums.pop()
-    greater, lesser = [], []
-    for num in nums:
-        if num > pivot:
-            greater.append(num)
-        else:
-            lesser.append(num)
-
-    return lesser + [pivot] + greater
+    return _quick_sort(nums, 0, len(nums)-1)
 
 
 def main():
