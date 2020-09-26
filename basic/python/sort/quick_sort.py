@@ -23,9 +23,8 @@ def quick_sort(nums):
         nums[j] = p
         _quick_sort(nums, start, i-1)
         _quick_sort(nums, i+1, end)
-        return nums
 
-    return _quick_sort(nums, 0, len(nums)-1)
+    _quick_sort(nums, 0, len(nums)-1)
 
 
 def main():
@@ -35,7 +34,8 @@ def main():
 
     for test_case in test_cases:
         print('before sort:', test_case)
-        print('after sort:', quick_sort(test_case))
+        quick_sort(test_case)
+        print('after sort:', test_case)
 
 
 if __name__ == '__main__':
