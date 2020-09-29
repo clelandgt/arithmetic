@@ -6,11 +6,28 @@
 
 
 class DynamicArray(object):
-    def __init__(self):
+    def __init__(self, capacity=10):
+        self.__capacity = capacity
+        self.__size = 0
+        self.__data = [None] * capacity
+
+    def _resize(self, new_capacity):
         pass
 
-    def add(self, item):
-        pass
+    def add(self, index, item):
+        if index < 0 or index > self.__size:
+            raise Exception('Add failed, index must between 0~_{}'.format(self.__size))
+
+        if index == self.__size:
+            self.__data[index] = item
+        else:
+            for i in range(index, self.__size)[::-1]:
+                self.__data[i+1] = self.__data[i]
+            self.__data[index] = item
+        self.__size += 1
+
+        if self.__size % self.__capacity == 0:
+            self._resize(self.__capacity * 2)
 
     def get(self, index):
         pass
@@ -21,9 +38,16 @@ class DynamicArray(object):
     def remove(self, index):
         pass
 
+    def print_array(self):
+        for item in self.__data:
+            print(item)
+
 
 def main():
-    pass
+    da = DynamicArray(5)
+    for i in range(50):
+        da.add(i, i+2)
+    da.print_array()
 
 
 if __name__ == '__main__':
