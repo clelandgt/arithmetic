@@ -12,11 +12,18 @@ class DynamicArray(object):
         self.__data = [None] * capacity
 
     def _resize(self, new_capacity):
-        pass
+        new_array = DynamicArray(new_capacity)
+        for i in range(self.__size):
+            new_array.add(new_array.__size, self.__data[i])
+        self.__capacity = new_capacity
+        self.__data = new_array.__data
 
     def add(self, index, item):
         if index < 0 or index > self.__size:
             raise Exception('Add failed, index must between 0~_{}'.format(self.__size))
+
+        if self.__size != 0 and self.__size % self.__capacity == 0:
+            self._resize(self.__capacity * 2)
 
         if index == self.__size:
             self.__data[index] = item
@@ -26,27 +33,44 @@ class DynamicArray(object):
             self.__data[index] = item
         self.__size += 1
 
-        if self.__size % self.__capacity == 0:
-            self._resize(self.__capacity * 2)
-
     def get(self, index):
-        pass
+        if index < 0 or index >= self._size:
+            raise Exception('Get failed. Index is illegal.')
+        return self.__data[index]
 
     def set(self, index, item):
-        pass
+        if index < 0 or index >= self._size:
+            raise Exception('Get failed. Index is illegal.')
+        self.__data[index] = item
 
     def remove(self, index):
-        pass
+        if index < 0 or index >= self.__size:
+            raise Exception('Remove failed. Index is illegal.')
+        for i in range(index, self.__size):
+            self.__data[i] = self.__data[i+1]
+        self.__size -= 1
+        self.__data[self.__size] = None
+
+        if self.__size and self.__capacity // self.__size == 4:
+            self._resize(self.__capacity // 2)
+
+    def get_capacity(self):
+        return self.__capacity
 
     def print_array(self):
-        for item in self.__data:
-            print(item)
+        print(self.__data)
 
 
 def main():
     da = DynamicArray(5)
     for i in range(50):
         da.add(i, i+2)
+    print('capacity: ', da.get_capacity())
+    da.print_array()
+
+    for _ in range(30):
+        da.remove(1)
+    print('capacity: ', da.get_capacity())
     da.print_array()
 
 
