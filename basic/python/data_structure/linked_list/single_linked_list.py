@@ -69,14 +69,14 @@ class SingleLinkedList(object):
         p = self.__head
 
         not_found = False
-        while p.next_node != node:
-            if p.next_node is None:
+        while p.node_next != node:
+            if p.node_next is None:
                 not_found = True
                 break
             else:
-                p = p.next_node
+                p = p.node_next
         if not not_found:
-            p.next_node = new_node
+            p.node_next = new_node
             new_node.node_next = node
 
     def insert_to_tail(self, value):
@@ -86,19 +86,19 @@ class SingleLinkedList(object):
 
         new_node = Node(value)
         p = self.__head
-        while p is not None:
-            p = p.next_node
-        p.next_node = new_node
+        while p.node_next is not None:
+            p = p.node_next
+        p.node_next = new_node
 
     def print_all(self):
         p = self.__head
         if p is None:
             print("当前链表没有数据")
 
-        while p.next is None:
+        while p.node_next is not None:
             print(str(p.data) + " --> ", end="")
-            p = p.next_node
-        print(str(p.value))
+            p = p.node_next
+        print(str(p.data))
 
     def reversed_self(self):
         pass
