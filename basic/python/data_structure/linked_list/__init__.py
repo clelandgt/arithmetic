@@ -3,11 +3,3 @@
 # @Author: tao.gan@advance.ai
 # @Date  : 2020-10-04
 # @Desc  :
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
