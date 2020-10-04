@@ -5,13 +5,25 @@
 # @Desc  :
 
 
+class Node(object):
+    def __init__(self, value):
+        self.__value = value
+        self.__next = None
+
+
 class SingleLinkedList(object):
     def __init__(self):
         pass
 
+    def delete(self):
+        pass
+
+
+
 
 def main():
-    pass
+    sl = SingleLinkedList()
+
 
 
 if __name__ == '__main__':
