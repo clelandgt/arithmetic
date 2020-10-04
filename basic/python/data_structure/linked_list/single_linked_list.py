@@ -79,6 +79,17 @@ class SingleLinkedList(object):
             p.next_node = new_node
             new_node.node_next = node
 
+    def insert_to_tail(self, value):
+        if self.__head is None:
+            self.insert_to_head(value)
+            return
+
+        new_node = Node(value)
+        p = self.__head
+        while p is not None:
+            p = p.next_node
+        p.next_node = new_node
+
     def print_all(self):
         p = self.__head
         if p is None:
@@ -99,7 +110,7 @@ class SingleLinkedList(object):
 def main():
     sl = SingleLinkedList()
     for i in range(10):
-        sl.insert_before(i)
+        sl.insert_to_tail(i)
     sl.print_all()
 
 
