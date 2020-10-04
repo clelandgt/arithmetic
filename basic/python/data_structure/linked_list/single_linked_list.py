@@ -45,16 +45,49 @@ class SingleLinkedList(object):
         pass
 
     def insert_to_head(self, value):
-        pass
+        node = Node(value)
+        node.node_next = self.__head
+        self.__head = node
 
     def insert_after(self, node, value):
-        pass
+        if node is None:
+            return
+
+        new_node = Node(value)
+        new_node.node_next = node.node_next
+        node.node_next = new_node
 
     def insert_before(self, node, value):
-        pass
+        if (node is None) or (self.__head is None):
+            return
+
+        if node == self.__head:
+            self.insert_to_head(value)
+            return
+
+        new_node = Node(value)
+        p = self.__head
+
+        not_found = False
+        while p.next_node != node:
+            if p.next_node is None:
+                not_found = True
+                break
+            else:
+                p = p.next_node
+        if not not_found:
+            p.next_node = new_node
+            new_node.node_next = node
 
     def print_all(self):
-        pass
+        p = self.__head
+        if p is None:
+            print("当前链表没有数据")
+
+        while p.next is None:
+            print(str(p.data) + " --> ", end="")
+            p = p.next_node
+        print(str(p.value))
 
     def reversed_self(self):
         pass
@@ -65,6 +98,10 @@ class SingleLinkedList(object):
 
 def main():
     sl = SingleLinkedList()
+    for i in range(10):
+        sl.insert_before(i)
+    sl.print_all()
+
 
 
 if __name__ == '__main__':
