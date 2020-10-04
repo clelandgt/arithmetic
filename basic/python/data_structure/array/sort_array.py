@@ -33,8 +33,13 @@ class SortArray(object):
             self.__data[i] = item
         self.__size += 1
 
-    def remove(self, item):
-        pass
+    def remove(self, index):
+        """删除指定指定下标的元素"""
+        if index >= self.__size or index < 0:
+            raise Exception("删除的下标越界")
+        for i in range(index, self.__size):
+            self.__data[i] = self.__data[i+1]
+        self.__size -= 1
 
     def print_array(self):
         print(self.__data)
@@ -46,6 +51,9 @@ def main():
         sa.add(i*2)
     sa.add(11)
     sa.add(-2)
+    sa.print_array()
+
+    sa.remove(2)
     sa.print_array()
 
 
