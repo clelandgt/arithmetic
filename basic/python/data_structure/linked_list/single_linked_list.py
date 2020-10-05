@@ -131,7 +131,17 @@ class SingleLinkedList(object):
 
     def reversed_self(self):
         """链表反转"""
-        pass
+        p = self.__head
+        if p is None:
+            return
+        pre, cur, next = None, p, p.node_next
+        while cur:
+            cur.node_next = pre
+            next.node_next = cur
+            pre = cur
+            cur = next
+            next = next.node_next
+        self.__head = cur
 
     def has_ring(self):
         """是否成环"""
@@ -154,6 +164,9 @@ def main():
     node2 = sl.find_by_value(4)
     if node2:
         print(node2.data)
+
+    sl.reversed_self()
+    sl.print_all()
 
 
 if __name__ == '__main__':
