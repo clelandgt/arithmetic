@@ -33,16 +33,45 @@ class SingleLinkedList(object):
         self.__head = None
 
     def delete_by_node(self, node):
-        pass
+        p = self.__head
+        while p.node_next:
+            if p.node_next == node:
+                p.node_next = node.node_next
+            else:
+                p = p.node_next
 
     def delete_by_value(self, value):
-        pass
+        p = self.__head
+        if p is None:
+            raise Exception('value not found')
+        while p.node_next:
+            if p.node_next.data == value:
+                p.node_next = p.node_next.node_next
+                return
+            p = p.node_next
+        raise Exception('value not found')
 
     def find_by_value(self, value):
-        pass
+        p = self.__head
+        if p is None:
+            raise Exception('value not found')
+        while p:
+            if p.data == value:
+                return p
+            else:
+                p = p.node_next
 
     def find_by_index(self, index):
-        pass
+        p = self.__head
+        position = 0
+        if p is None:
+            raise Exception('value not found')
+        while p:
+            if position == index:
+                return p
+            else:
+                p = p.node_next
+                position += 1
 
     def insert_to_head(self, value):
         node = Node(value)
@@ -101,9 +130,11 @@ class SingleLinkedList(object):
         print(str(p.data))
 
     def reversed_self(self):
+        """链表反转"""
         pass
 
     def has_ring(self):
+        """是否成环"""
         pass
 
 
@@ -113,6 +144,16 @@ def main():
         sl.insert_to_tail(i)
     sl.print_all()
 
+    sl.delete_by_value(6)
+    sl.print_all()
+
+    node1 = sl.find_by_value(4)
+    if node1:
+        print(node1.data)
+
+    node2 = sl.find_by_value(4)
+    if node2:
+        print(node2.data)
 
 
 if __name__ == '__main__':
