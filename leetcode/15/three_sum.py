@@ -92,11 +92,13 @@ class Solution3:
             left, right = i+1, len(nums)-1
             while left < right:
                 if nums[left] + nums[right] == remain:
-                    if nums[right] != nums[right-1]:
-                        result.append([nums[i], nums[left], nums[right]])
-                    right -= 1
-                    if nums[left] == nums[left+1]:
+                    result.append([nums[i], nums[left], nums[right]])
+                    while left < right and nums[right] == nums[right-1]:
+                        right -= 1
+                    while left < right and nums[left] == nums[left+1]:
                         left += 1
+                    right -= 1
+                    left += 1
                 elif nums[left] + nums[right] > remain:
                     right -= 1
                 else:
@@ -107,6 +109,7 @@ class Solution3:
 
 def main():
     test_cases = [
+        [0, 0, 0],
         [0, 0, 0, 0, 0, 0],
         [-1, 0, 1, 2, -1, -4],
         [82597, -9243, 62390, 83030, -97960, -26521, -61011, 83390, -38677, 12333, 75987, 46091, 83794, 19355, -71037,
