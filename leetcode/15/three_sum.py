@@ -45,7 +45,7 @@ class Solution1:
 
 class Solution2:
     """暴力求解(超时)
-    配合二叉搜索
+    优化: 配合二叉搜索
     时间复杂度：O(n^2 * logn)
     空间复杂度：O(1)
     """
@@ -54,7 +54,11 @@ class Solution2:
         result = {}
         nums = sorted(nums, key=lambda item: item)
         for i in range(len(nums)):
+            if i != 0 and nums[i] == nums[i-1]:
+                continue
             for j in range(i + 1, len(nums)):
+                if j != i + 1 and nums[j] == nums[j-1]:
+                    continue
                 target = 0 - nums[i] - nums[j]
                 left, right = j+1, len(nums)-1
                 while left <= right:
@@ -65,11 +69,40 @@ class Solution2:
                             result[key] = [nums[i], nums[j], nums[mid]]
                         break
                     elif target < nums[mid]:
-                        right = mid -1
+                        right = mid - 1
                     else:
                         left = mid + 1
 
         return list(result.values())
+
+
+class Solution3:
+    """ 双指针解决
+    时间复杂度：O(n^2)。其中排序为O(NlogN), 查找O(n^2)，综合起来为O(n^2)
+    空间复杂度：O(1)
+    """
+    @timeit
+    def threeSum(self, nums):
+        result = []
+        nums = sorted(nums, key=lambda item: item)
+        for i in range(len(nums)):
+            if i != 0 and nums[i] == nums[i-1]:
+                continue
+            remain = 0 - nums[i]
+            left, right = i+1, len(nums)-1
+            while left < right:
+                if nums[left] + nums[right] == remain:
+                    if nums[right] != nums[right-1]:
+                        result.append([nums[i], nums[left], nums[right]])
+                    right -= 1
+                    if nums[left] == nums[left+1]:
+                        left += 1
+                elif nums[left] + nums[right] > remain:
+                    right -= 1
+                else:
+                    left += 1
+
+        return result
 
 
 def main():
@@ -121,6 +154,11 @@ def main():
     s2 = Solution2()
     for test_case in test_cases:
         print(s2.threeSum(test_case))
+
+    print('Solution3')
+    s3 = Solution3()
+    for test_case in test_cases:
+        print(s3.threeSum(test_case))
 
 
 if __name__ == '__main__':
