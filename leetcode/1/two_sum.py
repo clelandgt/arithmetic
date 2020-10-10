@@ -40,16 +40,13 @@ class Solution2:
                 return i, nums_dict[j]
 
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        if len(nums) <= 1:
-            False
-
-        tmp_dict = {}
+        nums_dict = {}
         for i, v in enumerate(nums):
             remaining = target - v
-            if remaining in tmp_dict.keys():
-                return tmp_dict[remaining], i
+            if remaining in nums_dict.keys():
+                return nums_dict[remaining], i
             else:
-                tmp_dict[v] = i
+                nums_dict[v] = i
 
 
 def main():
