@@ -29,8 +29,11 @@ class Node(object):
 
 
 class SingleLinkedList(object):
-    def __init__(self):
-        self.__head = None
+    def __init__(self, value=None):
+        if value is not None:
+            self.__head = Node(value)
+        else:
+            self.__head = None
 
     def get_head(self):
         return self.__head
@@ -163,12 +166,19 @@ class SingleLinkedList(object):
     def has_ring(self):
         """是否成环"""
         head = self.__head
+        if head is None or head.node_next is None:
+            return False
+
         slow, fast = head, head.node_next.node_next
         while fast is not None:
             if slow == fast:
                 return True
             slow = slow.node_next
-            fast = fast.node_next.node_next
+            if fast.node_next:
+                fast = fast.node_next.node_next
+            else:
+                return False
+
         return False
 
 
@@ -182,6 +192,7 @@ def main():
     sl.print_all()
 
     # 查找元素
+    print('------ 查找元素 ------')
     node1 = sl.find_by_value(4)
     if node1:
         print(node1.data)
@@ -191,11 +202,13 @@ def main():
         print(node2.data)
 
     # 数组反转
-    # sl.reversed_self()
-    # sl.print_all()
+    print('------ 数组反转 ------')
+    sl.reversed_self()
+    sl.print_all()
 
     # 判断是否成环
     # head = [3, 2, 0, -4] pos = 1
+    print('------ 判断是否成环 ------')
     sl2 = SingleLinkedList()
     sl2.insert_to_tail(3)
     node1 = Node(2)
@@ -205,6 +218,9 @@ def main():
     node2.node_next = node1
     sl2.insert_node_to_tail(node2)
     print(sl2.has_ring())
+    print(sl.has_ring())
+    print(SingleLinkedList().has_ring())
+    print(SingleLinkedList(1).has_ring())
 
 
 if __name__ == '__main__':
