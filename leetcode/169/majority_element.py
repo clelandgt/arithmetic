@@ -3,21 +3,23 @@
 # @Author: clelandgt@163.com
 # @Date  : 2020-08-01
 # @Desc  :
-from typing import List
 
 
 class Solution1:
-    def majorityElement(self, nums: List[int]) -> int:
+    """ 使用hash表
+    时间复杂度：O(n)
+    空间复杂度：O(n)
+    """
+    def majorityElement(self, nums):
         value_counts = {}
         size = len(nums)
-
-        for num in nums:
-            if num not in value_counts:
-                value_counts[num] = 1
+        for item in nums:
+            if item not in value_counts:
+                value_counts[item] = 1
             else:
-                value_counts[num] += 1
-            if value_counts[num] > int(size/2):
-                return num
+                value_counts[item] += 1
+            if value_counts[item] > size/2:
+                return item
 
 
 def main():
