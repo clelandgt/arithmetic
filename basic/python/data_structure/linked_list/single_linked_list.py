@@ -32,6 +32,9 @@ class SingleLinkedList(object):
     def __init__(self):
         self.__head = None
 
+    def get_head(self):
+        return self.__head
+
     def delete_by_node(self, node):
         p = self.__head
         while p.node_next:
@@ -78,6 +81,10 @@ class SingleLinkedList(object):
         node.node_next = self.__head
         self.__head = node
 
+    def insert_node_to_head(self, node):
+        node.node_next = self.__head
+        self.__head = node
+
     def insert_after(self, node, value):
         if node is None:
             return
@@ -119,6 +126,16 @@ class SingleLinkedList(object):
             p = p.node_next
         p.node_next = new_node
 
+    def insert_node_to_tail(self, node):
+        if self.__head is None:
+            self.insert_node_to_head(node)
+            return
+
+        p = self.__head
+        while p.node_next is not None:
+            p = p.node_next
+        p.node_next = node
+
     def print_all(self):
         p = self.__head
         if p is None:
@@ -145,7 +162,14 @@ class SingleLinkedList(object):
 
     def has_ring(self):
         """是否成环"""
-        pass
+        head = self.__head
+        slow, fast = head, head.node_next.node_next
+        while fast is not None:
+            if slow == fast:
+                return True
+            slow = slow.node_next
+            fast = fast.node_next.node_next
+        return False
 
 
 def main():
@@ -157,6 +181,7 @@ def main():
     sl.delete_by_value(6)
     sl.print_all()
 
+    # 查找元素
     node1 = sl.find_by_value(4)
     if node1:
         print(node1.data)
@@ -165,8 +190,21 @@ def main():
     if node2:
         print(node2.data)
 
-    sl.reversed_self()
-    sl.print_all()
+    # 数组反转
+    # sl.reversed_self()
+    # sl.print_all()
+
+    # 判断是否成环
+    # head = [3, 2, 0, -4] pos = 1
+    sl2 = SingleLinkedList()
+    sl2.insert_to_tail(3)
+    node1 = Node(2)
+    sl2.insert_node_to_tail(node1)
+    sl2.insert_to_tail(0)
+    node2 = Node(-4)
+    node2.node_next = node1
+    sl2.insert_node_to_tail(node2)
+    print(sl2.has_ring())
 
 
 if __name__ == '__main__':
