@@ -157,11 +157,13 @@ class SingleLinkedList(object):
         pre, cur, next = None, p, p.node_next
         while cur:
             cur.node_next = pre
-            next.node_next = cur
             pre = cur
             cur = next
-            next = next.node_next
-        self.__head = cur
+            if next is None:
+                next = None
+            else:
+                next = next.node_next
+        self.__head = pre
 
     def has_ring(self):
         """是否成环"""
