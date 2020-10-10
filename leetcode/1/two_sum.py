@@ -53,10 +53,16 @@ class Solution2:
 
 
 def main():
-    nums = [2, 7, 11, 15]
-    target = 9
-    s = Solution2()
-    print(s.twoSum(nums, target))
+    test_cases = [
+        ((2, 7, 11, 15), 9)
+    ]
+    s1 = Solution1()
+    for test_case in test_cases:
+        print(s1.twoSum(test_case[0], test_case[1]))
+
+    s2 = Solution2()
+    for test_case in test_cases:
+        print(s2.twoSum(test_case[0], test_case[1]))
 
 
 if __name__ == '__main__':
