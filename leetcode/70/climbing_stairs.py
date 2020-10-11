@@ -2,13 +2,14 @@
 # @File  : climbing_stairs.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-08-01
-# @Desc  :
+# @Desc  : https://leetcode-cn.com/problems/climbing-stairs/
+# 0: 0, 1: 1, 2: 2
 
 
 class Solution1:
     """使用传统递归超时"""
     def climbStairs(self, n: int) -> int:
-        if n in (1, 2):
+        if n <= 2:
             return n
         return self.climbStairs(n-1) + self.climbStairs(n-2)
 
@@ -16,9 +17,10 @@ class Solution1:
 class Solution2:
     """循环解决"""
     def climbStairs(self, n: int) -> int:
-        if n in (1, 2):
+        if n <= 2:
             return n
 
+        # a为跨一个台阶；b为跨两个台阶
         a, b = 1, 1
         for _ in range(2, n+1):
             tmp = a
