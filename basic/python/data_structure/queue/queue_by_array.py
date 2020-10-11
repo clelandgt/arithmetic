@@ -35,22 +35,24 @@ class ArrayQueue:
             return item
 
     def __repr__(self):
-        for i in range(self.__head+1, self.__tail)[::-1]:
-            print(self.__queue[i], end='-->')
-        print(self.__queue[self.__head])
+        values = []
+        for i in range(self.__head, self.__tail):
+            values.append(self.__queue[i])
+        values = values[::-1]
+        return '-->'.join(str(value) for value in values)
 
 
 def main():
     que = ArrayQueue(10)
     for i in range(8):
         que.enqueue(i)
-    que.__repr__()
+    print(que.__repr__())
     for _ in range(5):
         que.dequeue()
-    que.__repr__()
+    print(que.__repr__())
     for i in range(4):
         que.enqueue(i)
-    que.__repr__()
+    print(que.__repr__())
 
 
 if __name__ == '__main__':
