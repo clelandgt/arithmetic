@@ -2,7 +2,7 @@
 # @File  : fibonacci.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-10-11
-# @Desc  : f(n) = f(n-1) + f(n-2)  0、1、1、2、3、5、8、13、21、34
+# @Desc  : 斐波拉切数列 f(n) = f(n-1) + f(n-2)  0、1、1、2、3、5、8、13、21、34
 
 
 def fibonacci(n):

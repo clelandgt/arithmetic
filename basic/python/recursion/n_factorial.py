@@ -2,7 +2,7 @@
 # @File  : n_factorial.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-10-11
-# @Desc  :
+# @Desc  : 实现n的阶乘
 
 
 def n_factorial(n):
