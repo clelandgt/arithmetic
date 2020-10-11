@@ -13,41 +13,41 @@ class ListNode(object):
 
 class Stack:
     def __init__(self):
-        self.__stack = ListNode()
+        self.__stack = None
 
     def top(self):
-        return None if self.is_empty() else self.__stack.next.val
+        return None if self.is_empty() else self.__stack.val
 
     def push(self, value):
         node = ListNode(value)
-        node.next = self.__stack.next
-        self.__stack.next = node
+        node.next = self.__stack
+        self.__stack = node
 
     def pop(self):
-        if self.is_empty() is None:
-            return None
-        else:
-            self.__stack.next = self.__stack.next.next
-            return self.__stack.next.val
+        if self.is_empty() is not None:
+            val = self.__stack.val
+            self.__stack = self.__stack.next
+            return val
 
     def clear(self):
         self.__stack = ListNode()
 
     def is_empty(self):
-        if self.__stack.next is None:
+        if self.__stack is None:
             return True
         return False
 
     def length(self):
-        p = self.__stack.next
-        i = 0
+        p = self.__stack
+        count = 0
         while p:
-            i += 1
+            count += 1
             p = p.next
+        return count
 
     def __str__(self):
         result = ''
-        p = self.__stack.next
+        p = self.__stack
         if p is None:
             return ''
 
