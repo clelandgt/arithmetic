@@ -10,11 +10,11 @@ class Solution1:
         stack, match = [], {')': '(', ']': '[', '}': '{'}
         for item in s:
             if item in match:
-                if not (stack and stack.pop() == match[item]):
+                if not (len(stack) > 0 and stack.pop() == match[item]):
                     return False
             else:
                 stack.append(item)
-        return not stack
+        return True if len(stack) == 0 else False
 
 
 def main():
