@@ -2,7 +2,7 @@
 # @File  : queue_by_array.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-10-11
-# @Desc  :
+# @Desc  : 并非每次出队，都移动数组。而是head+1, 这样效果提高了，但是会存在内存碎片，当tail达到capacity时，对碎片进行一次整理。
 
 
 class ArrayQueue:
@@ -28,6 +28,7 @@ class ArrayQueue:
         self.__tail += 1
 
     def dequeue(self):
+        # 出队
         if self.__head != self.__tail:
             item = self.__queue[self.__head]
             self.__head += 1
