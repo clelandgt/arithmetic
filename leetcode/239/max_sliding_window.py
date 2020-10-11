@@ -2,13 +2,13 @@
 # @File  : max_sliding_window.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-10-11
-# @Desc  :
+# @Desc  : TODO: 未实现
 from typing import List
 
 
 class Solution1:
     """ 暴力破解(超时)
-    时间复杂度：O(n^2)
+    时间复杂度：O(nk)
     空间复杂度：O(n)
     """
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
