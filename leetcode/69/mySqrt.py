@@ -7,19 +7,16 @@
 
 class Solution1:
     def mySqrt(self, x: int) -> int:
-        if x <= 1:
-            return x
-
-        result = int(x / 2)
+        result = x // 2
         while True:
             if result ** 2 == x:
                 return result
             elif result ** 2 > x:
-                result = int(result / 2)
+                result = result // 2
             else:
                 break
 
-        for i in range(result, result * 2 + 2):
+        for i in range(result, (result + 1) * 2):
             if i ** 2 > x:
                 return i - 1
             elif i ** 2 == x:
