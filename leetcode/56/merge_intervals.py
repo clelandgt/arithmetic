@@ -2,7 +2,7 @@
 # @File  : merge_intervals.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-07-17
-# @Desc  :
+# @Desc  : https://leetcode-cn.com/problems/merge-intervals/
 from typing import List
 
 
