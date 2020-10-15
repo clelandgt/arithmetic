@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @File  : cal_8queens.py
+# @File  : 8queens.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-06-24
 # @Desc  :
@@ -34,10 +34,12 @@ def is_ok(row, column):
     :return:
     """
     global result
-    left_diagonal = column - 1
-    right_diagonal = column + 1
+    left_diagonal, right_diagonal = column, column
 
     for index in range(row)[::-1]:
+        left_diagonal -= 1
+        right_diagonal += 1
+
         # 不在同列
         if result[index] == column:
             return False
@@ -48,8 +50,6 @@ def is_ok(row, column):
         if right_diagonal < 8:
             if result[index] == right_diagonal:
                 return False
-        left_diagonal -= 1
-        right_diagonal += 1
 
     return True
 
