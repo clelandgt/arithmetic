@@ -3,7 +3,10 @@
 # @Author: clelandgt@163.com
 # @Date  : 2020-02-01
 # @Desc  :
-from . import Node, BinaryTree
+import sys
+# 引用当前文件夹下的stack_by_linked
+sys.path.append('__init__.py')
+from __init__ import Node, BinaryTree
 from queue import Queue
 
 
@@ -333,3 +336,7 @@ def main():
     # 7. dfs
     print('dfs:')
     tree.dfs()
+
+
+if __name__ == '__main__':
+    main()
