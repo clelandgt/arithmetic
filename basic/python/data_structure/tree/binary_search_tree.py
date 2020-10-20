@@ -4,7 +4,6 @@
 # @Date  : 2020-02-01
 # @Desc  :
 import sys
-# 引用当前文件夹下的stack_by_linked
 sys.path.append('__init__.py')
 from __init__ import Node, BinaryTree
 from queue import Queue
