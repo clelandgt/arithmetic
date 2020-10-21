@@ -273,19 +273,6 @@ class BinarySearchTree(BinaryTree):
             if node.right:
                 queue.put(node.right)
 
-    def dfs(self):
-        return self._dfs(self.root)
-
-    def _dfs(self, node: Node) -> Node:
-        if node is None:
-            return
-
-        print(node.value)
-        if node.left:
-            self._dfs(node.left)
-        if node.right:
-            self._dfs(node.right)
-
 
 def main():
     u""" 构建的基础二叉树
