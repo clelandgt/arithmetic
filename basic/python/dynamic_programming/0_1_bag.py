@@ -28,9 +28,9 @@ def knapsack(weight, n, w):
                 states[i][j] = states[i-1][j]
 
         # 2. 第i个物品放入背包
-        for j in range(w-weight[0]):
+        for j in range(w-weight[i]+1):
             if states[i-1][j] == True:
-                states[i][j+weight[i]] == True
+                states[i][j+weight[i]] = True
 
     # 输出结果
     for i in range(w+1)[::-1]:
