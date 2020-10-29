@@ -20,17 +20,20 @@ class Solution1:
 
         def _sum_number(tree_node, num=0):
             global total
+            num = num * 10 + tree_node.val
+
             if tree_node.left is None and tree_node.right is None:
                 total += num
                 return
 
-            num = num * 10 + tree_node.val
             if tree_node.left is not None:
                 _sum_number(tree_node.left, num)
 
             if tree_node.right is not None:
                 _sum_number(tree_node.right, num)
-        _sum_number(root, 0)
+
+        if root:
+            _sum_number(root, 0)
 
         return total
 
@@ -40,7 +43,7 @@ def main():
     node1.left = TreeNode(2)
     node1.right = TreeNode(3)
 
-    node2 = TreeNode(1)
+    node2 = TreeNode(4)
     node22 = TreeNode(9)
     node22.left = TreeNode(5)
     node22.right = TreeNode(1)
