@@ -14,16 +14,20 @@ class TreeNode:
 
 
 class Solution1:
+    def __init__(self):
+        self.total = 0
+
     def sumNumbers(self, root: TreeNode) -> int:
-        global total
-        total = 0
+        """深度优先搜索
+        时间复杂度: O(n)
+        空间复杂度: O(n)
+        """
 
         def _sum_number(tree_node, num=0):
-            global total
             num = num * 10 + tree_node.val
 
             if tree_node.left is None and tree_node.right is None:
-                total += num
+                self.total += num
                 return
 
             if tree_node.left is not None:
@@ -35,7 +39,25 @@ class Solution1:
         if root:
             _sum_number(root, 0)
 
-        return total
+        return self.total
+
+
+class Solution2:
+    """深度优先搜索(改进)
+    时间复杂度: O(n)
+    空间复杂度: O(n)
+    """
+
+    def sumNumbers(self, root: TreeNode) -> int:
+        def _sum_number(tree_node, num=0):
+            if tree_node is None:
+                return 0
+            total = num * 10 + tree_node.val
+            if tree_node.left is None and tree_node.right is None:
+                return total
+            return _sum_number(tree_node.left, total) + _sum_number(tree_node.right, total)
+
+        return _sum_number(root, 0)
 
 
 def main():
@@ -55,9 +77,15 @@ def main():
         node2
     ]
 
+    print('Solution1')
     s1 = Solution1()
     for test_case in test_cases:
         print(s1.sumNumbers(test_case))
+
+    print('Solution2')
+    s2 = Solution2()
+    for test_case in test_cases:
+        print(s2.sumNumbers(test_case))
 
 
 if __name__ == '__main__':
