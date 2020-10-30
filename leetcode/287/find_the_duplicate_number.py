@@ -7,7 +7,10 @@ from typing import List
 
 
 class Solution1:
-    """暴力破解，超时"""
+    """暴力破解，超时
+    时间复杂度: O(n^2)
+    空间复杂度: O(n)
+    """
     def findDuplicate(self, nums: List[int]) -> int:
         for i in range(len(nums)):
             for j in range(i+1, len(nums)):
@@ -34,6 +37,21 @@ class Solution2:
                 lo = mid + 1
 
 
+class Solution3:
+    """哈希
+    时间复杂度: O(n)
+    空间复杂度: O(n)
+    """
+    def findDuplicate(self, nums: List[int]) -> int:
+        result = {}
+        for num in nums:
+            if result.get(num):
+                return num
+            else:
+                result[num] = 1
+        return -1
+
+
 def main():
     test_cases = [
         [1, 3, 4, 2, 2],
@@ -50,6 +68,11 @@ def main():
     s2 = Solution2()
     for test_case in test_cases:
         print(s2.findDuplicate(test_case))
+
+    print('Solution3')
+    s3 = Solution3()
+    for test_case in test_cases:
+        print(s3.findDuplicate(test_case))
 
 
 if __name__ == '__main__':
