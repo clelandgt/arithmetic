@@ -19,6 +19,10 @@ class Solution1:
 
 
 class Solution2:
+    """ 二分搜索
+    时间复杂度: O(nlogn)
+    空间复杂度: O(1)
+    """
     def findDuplicate(self, nums: List[int]) -> int:
         lo, hi = 1, len(nums)-1
         while lo <= hi:
