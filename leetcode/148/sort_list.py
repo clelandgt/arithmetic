@@ -24,29 +24,11 @@ def print_link(head: ListNode) -> ListNode:
 
 
 class Solution1:
+    """归并排序
+    时间复杂度: O(nlogn)
+    空间复杂度: O(n)
+    """
     def sortList(self, head: ListNode) -> ListNode:
-        """选择排序
-        leetcode 上超时了....
-        """
-        p = head
-        while p and p.next:
-            min_node = p
-            p11 = p.next
-            while p11:
-                if p11.val < min_node.val:
-                    min_node = p11
-                p11 = p11.next
-            if p.val != min_node.val:
-                p.val, min_node.val = min_node.val, p.val
-            p = p.next
-
-        return head
-
-
-class Solution2:
-    def sortList(self, head: ListNode) -> ListNode:
-        """
-        """
         if not head or not head.next:
             return head
 
@@ -101,12 +83,6 @@ def main():
     s1 = Solution1()
     for test_case in test_cases:
         result = s1.sortList(test_case)
-        print_link(result)
-
-    print('Solution2')
-    s2 = Solution2()
-    for test_case in test_cases:
-        result = s2.sortList(test_case)
         print_link(result)
 
 
