@@ -13,20 +13,38 @@ class ListNode:
 
 
 class Solution1:
-    """
+    """ 哈希表
     时间复杂度: O(n)
     空间复杂度: O(n)
     """
     def hasCycle(self, head: ListNode) -> bool:
         result = set()
 
-        p = head
-        while p:
-            if id(p) in result:
+        while head:
+            if id(head) in result:
                 return True
-            result.add(id(p))
-            p = p.next
+            result.add(id(head))
+            head = head.next
         return False
+
+
+class Solution2:
+    """ 双指针，快慢指针
+    时间复杂度: O(n)
+    空间复杂度: O(1)
+    """
+    def hasCycle(self, head: ListNode) -> bool:
+        if head is None or head.next is None:
+            return False
+
+        fast, slow = head, head.next
+        while fast != slow:
+            if fast is None or fast.next is None:
+                return False
+            slow = slow.next
+            fast = fast.next.next
+
+        return True
 
 
 def main():
@@ -56,9 +74,14 @@ def main():
     ]
 
     print('Solution1')
-    s = Solution1()
+    s1 = Solution1()
     for test_case in test_cases:
-        print(s.hasCycle(test_case))
+        print(s1.hasCycle(test_case))
+
+    print('Solution2')
+    s2 = Solution2()
+    for test_case in test_cases:
+        print(s2.hasCycle(test_case))
 
 
 if __name__ == '__main__':
