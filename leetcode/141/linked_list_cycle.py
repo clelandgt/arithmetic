@@ -2,7 +2,7 @@
 # @File  : linked_list_cycle.py
 # @Author: clelandgt@163.com
 # @Date  : 2020-06-28
-# @Desc  :
+# @Desc  : 判断是否成环
 
 
 # Definition for singly-linked list.
@@ -29,22 +29,33 @@ class Solution1:
 
 
 class Solution2:
+    """ 修改遍历过的节点. 注意点: 会修改原链表的值
+    时间复杂度: O(n)
+    空间复杂度: O(1)
+    """
+    def hasCycle(self, head: ListNode) -> bool:
+        while head:
+            if head.val == 10**6:
+                return True
+            head.val = 10**6
+            head = head.next
+        return False
+
+
+class Solution3:
     """ 双指针，快慢指针
     时间复杂度: O(n)
     空间复杂度: O(1)
     """
     def hasCycle(self, head: ListNode) -> bool:
-        if head is None or head.next is None:
-            return False
-
-        fast, slow = head, head.next
-        while fast != slow:
-            if fast is None or fast.next is None:
-                return False
+        fast, slow = head, head
+        while fast is not None and fast.next is not None:
             slow = slow.next
             fast = fast.next.next
+            if slow == fast:
+                return True
 
-        return True
+        return False
 
 
 def main():
@@ -82,6 +93,11 @@ def main():
     s2 = Solution2()
     for test_case in test_cases:
         print(s2.hasCycle(test_case))
+
+    print('Solution3')
+    s3 = Solution3()
+    for test_case in test_cases:
+        print(s3.hasCycle(test_case))
 
 
 if __name__ == '__main__':
