@@ -26,36 +26,36 @@ def print_link(head: ListNode) -> ListNode:
 class Solution1:
     """归并排序
     时间复杂度: O(nlogn)
-    空间复杂度: O(n)
+    空间复杂度: O(1)
     """
     def sortList(self, head: ListNode) -> ListNode:
         if not head or not head.next:
             return head
 
         # mid
-        fast = head.next
-        slow = head
+        pre, fast, slow = head, head, head
         while fast and fast.next:
-            fast = fast.next.next
+            pre = slow
             slow = slow.next
+            fast = fast.next.next
+        pre.next = None
 
-        second = slow.next
-        slow.next = None
+        # 合并
         left = self.sortList(head)
-        right = self.sortList(second)
+        right = self.sortList(slow)
         return self.merge(left, right)
 
-    # l = 2, 7, 9   r = 3, 5, 8
-    # m = 2, 3, 5,
-    def merge(self, left: ListNode, right: ListNode) -> ListNode:
+    def merge(self, left: ListNode, right: ListNode):
+        # l = 2, 7, 9   r = 3, 5, 8
+        # m = 2, 3, 5,
         if not left or not right:
             return left or right
         # 找到以left, right为起点
         if left.val > right.val:
-            right, left = left, right
+            left, right = right, left
         head = pre = left
         left = left.next
-
+        # 合并
         while left and right:
             if left.val < right.val:
                 left = left.next
@@ -65,7 +65,6 @@ class Solution1:
                 tmp = right.next
                 right.next = next
                 right = tmp
-
             pre = pre.next
         pre.next = left or right
         return head
