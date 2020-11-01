@@ -24,7 +24,7 @@ def print_link(head: ListNode) -> ListNode:
 
 
 class Solution1:
-    """归并排序
+    """归并排序(递归)
     时间复杂度: O(nlogn)
     空间复杂度: O(1)
     """
@@ -33,41 +33,38 @@ class Solution1:
             return head
 
         # mid
-        pre, fast, slow = head, head, head
+        fast, slow = head.next, head
         while fast and fast.next:
-            pre = slow
             slow = slow.next
             fast = fast.next.next
-        pre.next = None
+        mid, slow.next = slow.next, None
 
         # 合并
         left = self.sortList(head)
-        right = self.sortList(slow)
+        right = self.sortList(mid)
         return self.merge(left, right)
 
     def merge(self, left: ListNode, right: ListNode):
-        # l = 2, 7, 9   r = 3, 5, 8
-        # m = 2, 3, 5,
+        # left = 2, 7, 9   right = 3, 5, 8
+        # p = 2, 3, 5, 7, 8, 9
         if not left or not right:
             return left or right
-        # 找到以left, right为起点
-        if left.val > right.val:
-            left, right = right, left
-        head = pre = left
-        left = left.next
-        # 合并
+
+        head = p = ListNode(0)
         while left and right:
-            if left.val < right.val:
-                left = left.next
+            if left.val <= right.val:
+                p.next, left = left, left.next
             else:
-                next = pre.next
-                pre.next = right
-                tmp = right.next
-                right.next = next
-                right = tmp
-            pre = pre.next
-        pre.next = left or right
-        return head
+                p.next, right = right, right.next
+            p = p.next
+        p.next = left or right
+
+        return head.next
+
+
+class Solution2:
+    def sortList(self, head: ListNode) -> ListNode:
+        pass
 
 
 def main():
@@ -82,6 +79,12 @@ def main():
     s1 = Solution1()
     for test_case in test_cases:
         result = s1.sortList(test_case)
+        print_link(result)
+
+    print('Solution2')
+    s2 = Solution2()
+    for test_case in test_cases:
+        result = s2.sortList(test_case)
         print_link(result)
 
 
