@@ -31,9 +31,9 @@ class Solution1:
 
 class Solution2:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        """ 移动窗口求解
+        """ 移动窗口 双指针求解
         时间复杂度 O(n)
-        空间复杂度
+        空间复杂度 O(1)
         """
         if len(s) == 0 or not s:
             return 0
