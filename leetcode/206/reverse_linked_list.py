@@ -13,16 +13,18 @@ class ListNode:
 
 
 class Solution1:
+    """ 双指针
+    时间复杂度: O(n)
+    空间复杂度: O(1)
+    """
     def reverseList(self, head: ListNode) -> ListNode:
-        current_node = None
-        last_node = None
-
-        p = head
-        while p:
-            current_node = ListNode(p.val, last_node)
-            last_node = current_node
-            p = p.next
-        return current_node
+        pre, cur = None, head
+        while cur:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        return pre
 
     def print_links(self, head: ListNode) -> None:
         p = head
