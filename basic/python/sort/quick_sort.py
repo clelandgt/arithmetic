@@ -34,34 +34,58 @@ def quick_sort1(nums):
     _quick_sort(nums, 0, len(nums)-1)
 
 
-def quick_sort2(nums):
-    """ 快速排序2: 只用了一层循环，并且一趟就完成分片
+# def quick_sort2(nums):
+#     """ 快速排序2: 只用了一层循环，并且一趟就完成分片
+#
+#     时间复杂度: O(n^2)
+#     空间复杂度: O(1)
+#     :param nums:
+#     :return:
+#     """
+#     def _quick_sort(nums, start, end):
+#         if start >= end:
+#             return
+#         p = partition(nums, start, end)
+#         _quick_sort(nums, start, p-1)
+#         _quick_sort(nums, p+1, end)
+#
+#     def partition(nums, start, end):
+#         """双指针"""
+#         piovt = nums[end]
+#         less_index = start - 1
+#         for i in range(start, end):
+#             if nums[i] <= piovt:
+#                 less_index += 1
+#                 nums[i], nums[less_index] = nums[less_index], nums[i]
+#         less_index += 1
+#         nums[less_index], nums[end] = nums[end], nums[less_index]
+#         return less_index
+#
+#     _quick_sort(nums, 0, len(nums)-1)
 
-    时间复杂度: O(n^2)
-    空间复杂度: O(1)
-    :param nums:
-    :return:
-    """
+
+def quick_sort2(nums):
     def _quick_sort(nums, start, end):
         if start >= end:
             return
-        p = partition(nums, start, end)
-        _quick_sort(nums, start, p-1)
-        _quick_sort(nums, p+1, end)
+        pivot = partition(nums, start, end)
+        _quick_sort(nums, start, pivot-1)
+        _quick_sort(nums, pivot+1, end)
 
     def partition(nums, start, end):
-        """双指针"""
-        piovt = nums[end]
-        less_index = start - 1
+        pivot = nums[end]
+        less_index = start-1
         for i in range(start, end):
-            if nums[i] <= piovt:
+            if nums[i] <= pivot:
                 less_index += 1
-                nums[i], nums[less_index] = nums[less_index], nums[i]
+                nums[less_index], nums[i] = nums[i], nums[less_index]
         less_index += 1
         nums[less_index], nums[end] = nums[end], nums[less_index]
         return less_index
 
     _quick_sort(nums, 0, len(nums)-1)
+
+
 
 
 def main():
