@@ -7,7 +7,10 @@ from typing import List
 
 
 class Solution1:
-    """暴力破解 超时"""
+    """暴力破解 超时
+    时间复杂度: O(n^2)
+    空间复杂度: O(n)
+    """
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         result = []
         for i in range(len(T)):
@@ -40,11 +43,14 @@ class Solution2:
 
 
 class Solution3:
-    """使用栈"""
+    """ 使用栈
+    时间复杂度: O(n)
+    空间复杂度: O(n)
+    """
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         res = [0] * len(T)
         stack = []
-        for i in range(len(T)-1, -1, -1):
+        for i in range(len(T))[::-1]:
             while(stack and T[i] >= T[stack[-1]]):
                 stack.pop()
             if stack:
@@ -67,6 +73,11 @@ def main():
     s1 = Solution2()
     for test_case in test_cases:
         print(s1.dailyTemperatures(test_case))
+
+    print('Solution3')
+    s3 = Solution3()
+    for test_case in test_cases:
+        print(s3.dailyTemperatures(test_case))
 
 
 if __name__ == '__main__':
