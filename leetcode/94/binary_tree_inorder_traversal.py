@@ -20,19 +20,18 @@ class Solution1:
     时间复杂度: O(n)
     空间复杂度: O(n)
     """
-    _in_nums = []
+    def __init__(self):
+        self.__result = []
 
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        self._in_nums = []
-        self._inorderTraversal(root)
-        return self._in_nums
-
-    def _inorderTraversal(self, root: TreeNode) -> List[int]:
-        if root is None:
-            return
-        self._inorderTraversal(root.left)
-        self._in_nums.append(root.val)
-        self._inorderTraversal(root.right)
+        def _inorderTraversal(root):
+            if not root:
+                return
+            _inorderTraversal(root.left)
+            self.__result.append(root.val)
+            _inorderTraversal(root.right)
+        _inorderTraversal(root)
+        return self.__result
 
 
 def main():
