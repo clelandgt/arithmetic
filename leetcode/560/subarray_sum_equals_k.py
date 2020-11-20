@@ -7,7 +7,10 @@ from typing import List
 
 
 class Solution1:
-    """暴力破解 (超时)"""
+    """暴力破解 (超时)
+    时间复杂度: O(n^2)
+    空间复杂度: O(1)
+    """
     def subarraySum(self, nums: List[int], k: int) -> int:
         res = 0
         for i in range(len(nums)):
