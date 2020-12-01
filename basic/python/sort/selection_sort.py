@@ -13,32 +13,40 @@ for i in [0, n):
             min_index = j
     swap(l[i], l[min_index])
 """
+from copy import deepcopy
 
 
 def selection_sort1(nums):
-    """基于循环"""
+    """ 基于循环
+    时间复杂度: O(n^2)
+    :param nums:
+    :return:
+    """
     for i in range(len(nums)):
         min_index = i
         for j in range(i+1, len(nums)):
-            if nums[j] < nums[min_index]:
+            if nums[min_index] > nums[j]:
                 min_index = j
         nums[i], nums[min_index] = nums[min_index], nums[i]
-
     return nums
 
 
 def selection_sort2(nums):
-    """递归"""
-    def _selection_sorts(nums, n):
-        if n == len(nums):
+    """ 基于递归
+    时间复杂度: O(n^2)
+    :param nums:
+    :return:
+    """
+    def _selection_sort2(nums, n):
+        if len(nums) == n:
             return
         min_index = n
-        for i in range(n, len(nums)):
-            if nums[i] < nums[min_index]:
+        for i in range(n+1, len(nums)):
+            if nums[min_index] > nums[i]:
                 min_index = i
-        nums[n], nums[min_index] = nums[min_index], nums[n]
-    _selection_sorts(nums, 0)
-
+        nums[min_index], nums[n] = nums[n], nums[min_index]
+        _selection_sort2(nums, n+1)
+    _selection_sort2(nums, 0)
     return nums
 
 
@@ -50,13 +58,13 @@ def main():
     print('Solution1')
     for test_case in test_cases:
         print('before sort:', test_case)
-        result = selection_sort1(test_case)
+        result = selection_sort1(deepcopy(test_case))
         print('after sort:', result)
 
-    print('Solution2')
+    print('\nSolution2')
     for test_case in test_cases:
         print('before sort:', test_case)
-        result = selection_sort2(test_case)
+        result = selection_sort2(deepcopy(test_case))
         print('after sort:', result)
 
 
