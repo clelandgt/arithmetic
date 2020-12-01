@@ -6,7 +6,8 @@
 
 
 def bubble_sort1(nums):
-    """ 冒泡排序O(n^2)  循环
+    """ 基于循环实现
+    O(n^2)
     每次比较如果发现较小的元素在后面，就交换两个相邻的元素。排序序列顺序从左到右是从小到大，伪代码：
     """
     for i in range(len(nums)):
@@ -17,7 +18,9 @@ def bubble_sort1(nums):
 
 
 def bubble_sort2(nums):
-    """递归"""
+    """基于递归实现
+    O(n^2)
+    """
     def _bubble_sort2(nums, n):
         if n == len(nums):
             return
@@ -43,7 +46,7 @@ def main():
         result = bubble_sort1(test_case)
         print('after sort:', result)
 
-    print('Solution2')
+    print('\nSolution2')
     for test_case in test_cases:
         print('before sort:', test_case)
         result = bubble_sort2(test_case)
