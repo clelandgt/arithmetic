@@ -35,9 +35,10 @@ def binary_search2(nums, num):
         if nums[mid] == num:
             return mid
         elif num < nums[mid]:
-            right = mid
+            right = mid + 1
         else:
-            left = mid
+            left = mid - 1
+    return -1
 
 
 def main():
@@ -51,7 +52,7 @@ def main():
         print('search: ', test_case[1])
         print('index: ', index)
 
-        print('binary_search2')
+        print('\nbinary_search2')
         index = binary_search2(test_case[0], test_case[1])
         print('nums: ', test_case[0])
         print('search: ', test_case[1])
